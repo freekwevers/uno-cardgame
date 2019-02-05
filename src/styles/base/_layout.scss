@@ -1,0 +1,89 @@
+.body-wrapper {
+    overflow-x: hidden;
+}
+
+.container {
+    margin: 0 15px;
+    max-width: 1100px;
+
+    @include respond-min($mobile) {
+        margin: 0 30px;
+    }
+
+    @include respond-min(1100px + 60px) {
+        margin: 0 auto;
+    }
+}
+
+.main-container {
+    padding: 30px 0;
+
+    @include respond-min($mobile) {
+        padding: 45px 0;
+    }
+
+    @include respond-min($desktop) {
+        padding: 60px 0;
+    }
+
+    &--no-padding {
+        padding: 0;
+
+        @include respond-min($mobile) {
+            padding: 0;
+        }
+
+        @include respond-min($desktop) {
+            padding: 0;
+        }
+    }
+
+    &--no-padding-top {
+        padding: 0 0 30px;
+
+        @include respond-min($mobile) {
+            padding: 0 0 45px;
+        }
+
+        @include respond-min($desktop) {
+            padding: 0 0 60px;
+        }
+    }
+
+    &--no-padding-bottom {
+        padding: 30px 0 0;
+
+        @include respond-min($mobile) {
+            padding: 45px 0 0;
+        }
+
+        @include respond-min($desktop) {
+            padding: 60px 0 0;
+        }
+    }
+
+    &--flex {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        @include respond-min($tablet) {
+            .content-container {
+                flex-grow: 1;
+            }
+
+            .aside {
+                flex-shrink: 1;
+                width: 25%;
+                margin-right: 30px;
+                order: -1;
+            }
+        }
+
+        @include respond-min($desktop) {
+            .aside {
+                margin-right: 60px;
+            }
+        }
+    }
+}

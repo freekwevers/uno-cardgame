@@ -1,0 +1,61 @@
+// Custom colors
+// -------------------------
+$c1:            #D8303D !default;
+
+// Card colors
+$red:           #EE222B !default;
+$yellow:        #F2E405 !default;
+$green:         #05AC54 !default;
+$blue:          #6890CB !default;
+
+// Grayscale colors
+// -------------------------
+$black:         #000000 !default;
+$grayDarkest:   #222222 !default;
+$grayDarker:    #666666 !default;
+$grayDark:      #555555 !default;
+$gray:          #AAAAAA !default;
+$grayLight:     #999999 !default;
+$grayLighter:   #E6E6E6 !default;
+$grayLightest:  #FAFAFA !default;
+$white:         #FFFFFF !default;
+
+// Scaffolding
+// -------------------------
+$bodyBackground:    $white !default;
+$textColor:         $grayDarker !default;
+
+// Links
+// -------------------------
+$linkColor:         $c1 !default;
+$linkColorHover:    darken($c1, 10%) !default;
+
+// States
+// -------------------------
+$errorColor:        #D8303D !default;
+$warningColor:      #DF9111 !default;
+$successColor:      #35D87F !default;
+
+// Typography
+// -------------------------
+$baseFontFamily:    Arial, sans-serif;
+$baseFontSizeSmall: 16px !default;
+$baseFontSize:      18px !default;
+$baseLineHeight:    1.6em !default;
+
+// Headings
+$headingsFontFamily:    $baseFontFamily;
+$headingsColor:         $black;
+
+// Breakpoints
+// -------------------------
+$mobile:    480px;
+$tablet:    760px;
+$desktop:   990px;
+$wide:      1280px;
+
+// Shadows
+// -------------------------
+$shadow1: 0 1px 3px 0 rgba($black, 0.08);
+$shadow2: 0 2px 6px 0 rgba($black, 0.05);
+$shadow3: 0 3px 15px 0 rgba($black, 0.05);
