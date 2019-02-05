@@ -1,0 +1,3 @@
+[*.{js,scss,sass,css,vue,html}]
+indent_style = space
+indent_size = 4
