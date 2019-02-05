@@ -5,6 +5,7 @@
         </div><!-- /.container -->
     </header><!-- /.header -->
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
+    @import '../styles/base/settings';
     @import '../styles/components/header';
 </style>

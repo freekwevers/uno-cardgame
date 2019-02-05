@@ -1,7 +1,9 @@
 <template>
-    <div class="card" :class=[cardColorClass]>
+    <li class="card" :class=[cardColorClass]>
+        <span class="card__nr card__nr--top">{{card.card_nr}}</span><!-- /.card__nr -->
         <span class="card__nr">{{card.card_nr}}</span><!-- /.card__nr -->
-    </div><!-- /.card -->
+        <span class="card__nr card__nr--bottom">{{card.card_nr}}</span><!-- /.card__nr -->
+    </li><!-- /.card -->
 </template>
 <script>
     export default {
@@ -13,6 +15,7 @@
         }
     }
 </script>
-<style lang="scss" scoped>
-    @import '../../styles/components/card.scss';
+<style lang="scss">
+    @import '../../styles/base/settings';
+    @import '../../styles/components/card';
 </style>
