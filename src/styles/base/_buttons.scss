@@ -1,0 +1,21 @@
+.btn {
+    display: inline-block;
+    border-radius: 3px;
+    border: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    font-weight: 500;
+    transition: .1s ease;
+    box-shadow: none;
+    cursor: pointer;
+
+    &--1 {
+        background-color: $white;
+
+        &:hover,
+        &:focus {
+            transform: translateY(-1px);
+            box-shadow: $shadow2;
+        }
+    }
+}

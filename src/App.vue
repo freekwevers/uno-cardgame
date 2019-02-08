@@ -6,6 +6,7 @@
                     <div class="main-container">
                         <div class="content-container">
                             <div class="section">
+                                <button class="btn btn--1" @click="partCards">Start</button>
                                 <ul class="my-cards">
                                     <app-card :card="card" v-for="card in cards" :key="card.id"></app-card>
                                 </ul><!-- /.my-cards -->
@@ -33,7 +34,9 @@ export default {
         }
     },
     methods: {
-
+        partCards() {
+            console.log('part cards');
+        }
     },
     created() {
         // Fill cards

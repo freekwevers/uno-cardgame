@@ -1,5 +1,13 @@
 [
     {
+        "id": "red_0",
+        "nr": "0",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
         "id": "red_1",
         "nr": "1",
         "color": "red",
@@ -89,6 +97,110 @@
     },
     {
         "id": "red_12",
+        "nr": "",
+        "color": "red",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": "next-player-take-two"
+    },
+    {
+        "id": "red_13",
+        "nr": "0",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_14",
+        "nr": "1",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_15",
+        "nr": "2",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_16",
+        "nr": "3",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_17",
+        "nr": "4",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_18",
+        "nr": "5",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_19",
+        "nr": "6",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_20",
+        "nr": "7",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_21",
+        "nr": "8",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_22",
+        "nr": "9",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_23",
+        "nr": "",
+        "color": "red",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": "next-player-skip-turn"
+    },
+    {
+        "id": "red_24",
+        "nr": "",
+        "color": "red",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "red_25",
         "nr": "",
         "color": "red",
         "type": "special",
@@ -192,6 +304,102 @@
         "icon": "next-player-take-two"
     },
     {
+        "id": "yellow_13",
+        "nr": "1",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_14",
+        "nr": "2",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_15",
+        "nr": "3",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_16",
+        "nr": "4",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_17",
+        "nr": "5",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_18",
+        "nr": "6",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_19",
+        "nr": "7",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_20",
+        "nr": "8",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_21",
+        "nr": "9",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_22",
+        "nr": "",
+        "color": "yellow",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": "next-player-skip-turn"
+    },
+    {
+        "id": "yellow_23",
+        "nr": "",
+        "color": "yellow",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "yellow_24",
+        "nr": "",
+        "color": "yellow",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": "next-player-take-two"
+    },
+    {
         "id": "green_1",
         "nr": "1",
         "color": "green",
@@ -288,6 +496,102 @@
         "icon": "next-player-take-two"
     },
     {
+        "id": "green_13",
+        "nr": "1",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_14",
+        "nr": "2",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_15",
+        "nr": "3",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_16",
+        "nr": "4",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_17",
+        "nr": "5",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_18",
+        "nr": "6",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_19",
+        "nr": "7",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_20",
+        "nr": "8",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_21",
+        "nr": "9",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_22",
+        "nr": "",
+        "color": "green",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": "next-player-skip-turn"
+    },
+    {
+        "id": "green_23",
+        "nr": "",
+        "color": "green",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "green_24",
+        "nr": "",
+        "color": "green",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": "next-player-take-two"
+    },
+    {
         "id": "blue_1",
         "nr": "1",
         "color": "blue",
@@ -377,6 +681,102 @@
     },
     {
         "id": "blue_12",
+        "nr": "",
+        "color": "blue",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": "next-player-take-two"
+    },
+    {
+        "id": "blue_13",
+        "nr": "1",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_14",
+        "nr": "2",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_15",
+        "nr": "3",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_16",
+        "nr": "4",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_17",
+        "nr": "5",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_18",
+        "nr": "6",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_19",
+        "nr": "7",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_20",
+        "nr": "8",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_21",
+        "nr": "9",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_22",
+        "nr": "",
+        "color": "blue",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": "next-player-skip-turn"
+    },
+    {
+        "id": "blue_23",
+        "nr": "",
+        "color": "blue",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "blue_24",
         "nr": "",
         "color": "blue",
         "type": "special",
