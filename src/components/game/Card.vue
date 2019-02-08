@@ -4,7 +4,7 @@
         <span class="card__nr" v-if="card.nr">{{card.nr}}</span><!-- /.card__nr -->
         <span class="card__nr card__nr--bottom" v-if="card.nr">{{card.nr}}</span><!-- /.card__nr -->
         <img :src="cardIconSrc" width="30" height="30" :alt="card.icon" v-if="card.icon" class="card__icon card__icon--top" />
-        <img :src="cardIconSrc" width="100" height="100" :alt="card.icon" v-if="card.icon" class="card__icon" />
+        <img :src="cardIconSrc" width="80" height="80" :alt="card.icon" v-if="card.icon" class="card__icon" />
         <img :src="cardIconSrc" width="30" height="30" :alt="card.icon" v-if="card.icon" class="card__icon card__icon--bottom" />
     </li><!-- /.card -->
 </template>
@@ -26,6 +26,14 @@
 
                 if ( this.card.icon === 'next-player-take-four' ) {
                     return '/icons/icon-take-four-cards.svg'
+                }
+
+                if ( this.card.icon === 'next-player-skip-turn' ) {
+                    return '/icons/icon-next-player-skip-turn.svg'
+                }
+
+                if ( this.card.icon === 'next-player-take-two' ) {
+                    return '/icons/icon-next-player-take-two.svg'
                 }
             }
         }

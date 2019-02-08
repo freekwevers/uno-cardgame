@@ -73,11 +73,11 @@
     },
     {
         "id": "red_10",
-        "nr": "S",
+        "nr": "",
         "color": "red",
         "type": "special",
         "rule": "next-player-skip-turn",
-        "icon": null
+        "icon": "next-player-skip-turn"
     },
     {
         "id": "red_11",
@@ -89,11 +89,11 @@
     },
     {
         "id": "red_12",
-        "nr": "+2",
+        "nr": "",
         "color": "red",
         "type": "special",
         "rule": "next-player-take-two",
-        "icon": null
+        "icon": "next-player-take-two"
     },
     {
         "id": "yellow_1",
@@ -169,11 +169,11 @@
     },
     {
         "id": "yellow_10",
-        "nr": "S",
+        "nr": "",
         "color": "yellow",
         "type": "special",
         "rule": "next-player-skip-turn",
-        "icon": null
+        "icon": "next-player-skip-turn"
     },
     {
         "id": "yellow_11",
@@ -185,11 +185,11 @@
     },
     {
         "id": "yellow_12",
-        "nr": "+2",
+        "nr": "",
         "color": "yellow",
         "type": "special",
         "rule": "next-player-take-two",
-        "icon": null
+        "icon": "next-player-take-two"
     },
     {
         "id": "green_1",
@@ -265,11 +265,11 @@
     },
     {
         "id": "green_10",
-        "nr": "S",
+        "nr": "",
         "color": "green",
         "type": "special",
         "rule": "next-player-skip-turn",
-        "icon": null
+        "icon": "next-player-skip-turn"
     },
     {
         "id": "green_11",
@@ -281,11 +281,11 @@
     },
     {
         "id": "green_12",
-        "nr": "+2",
+        "nr": "",
         "color": "green",
         "type": "special",
         "rule": "next-player-take-two",
-        "icon": null
+        "icon": "next-player-take-two"
     },
     {
         "id": "blue_1",
@@ -361,11 +361,11 @@
     },
     {
         "id": "blue_10",
-        "nr": "S",
+        "nr": "",
         "color": "blue",
         "type": "special",
         "rule": "next-player-skip-turn",
-        "icon": null
+        "icon": "next-player-skip-turn"
     },
     {
         "id": "blue_11",
@@ -377,11 +377,11 @@
     },
     {
         "id": "blue_12",
-        "nr": "+2",
+        "nr": "",
         "color": "blue",
         "type": "special",
         "rule": "next-player-take-two",
-        "icon": null
+        "icon": "next-player-take-two"
     },
     {
         "id": "black_1",
