@@ -20,6 +20,7 @@
 
 <script>
 import axios from 'axios';
+import api from '@/api';
 import appCard from '@/components/game/Card.vue';
 
 export default {
@@ -32,14 +33,19 @@ export default {
             cards: null
         }
     },
+    methods: {
+        getCards(url) {
+            axios.get(url)
+            .then(response => {
+                this.cards = response.data;
+            })
+            .catch(e => {
+                this.errors.push(e);
+            });
+        }
+    },
     created() {
-        axios.get('/data/deck.json')
-        .then(response => {
-            this.cards = response.data;
-        })
-        .catch(e => {
-            this.errors.push(e)
-        })
+        this.getCards('/data/deck.json');
     }
 };
 </script>
