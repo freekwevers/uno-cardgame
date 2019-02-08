@@ -1,0 +1,450 @@
+[
+    {
+        "id": "red_1",
+        "nr": "1",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_2",
+        "nr": "2",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_3",
+        "nr": "3",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_4",
+        "nr": "4",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_5",
+        "nr": "5",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_6",
+        "nr": "6",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_7",
+        "nr": "7",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_8",
+        "nr": "8",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_9",
+        "nr": "9",
+        "color": "red",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "red_10",
+        "nr": "S",
+        "color": "red",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": null
+    },
+    {
+        "id": "red_11",
+        "nr": "",
+        "color": "red",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "red_12",
+        "nr": "+2",
+        "color": "red",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": null
+    },
+    {
+        "id": "yellow_1",
+        "nr": "1",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_2",
+        "nr": "2",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_3",
+        "nr": "3",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_4",
+        "nr": "4",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_5",
+        "nr": "5",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_6",
+        "nr": "6",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_7",
+        "nr": "7",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_8",
+        "nr": "8",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_9",
+        "nr": "9",
+        "color": "yellow",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "yellow_10",
+        "nr": "S",
+        "color": "yellow",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": null
+    },
+    {
+        "id": "yellow_11",
+        "nr": "",
+        "color": "yellow",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "yellow_12",
+        "nr": "+2",
+        "color": "yellow",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": null
+    },
+    {
+        "id": "green_1",
+        "nr": "1",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_2",
+        "nr": "2",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_3",
+        "nr": "3",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_4",
+        "nr": "4",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_5",
+        "nr": "5",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_6",
+        "nr": "6",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_7",
+        "nr": "7",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_8",
+        "nr": "8",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_9",
+        "nr": "9",
+        "color": "green",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "green_10",
+        "nr": "S",
+        "color": "green",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": null
+    },
+    {
+        "id": "green_11",
+        "nr": "",
+        "color": "green",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "green_12",
+        "nr": "+2",
+        "color": "green",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": null
+    },
+    {
+        "id": "blue_1",
+        "nr": "1",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_2",
+        "nr": "2",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_3",
+        "nr": "3",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_4",
+        "nr": "4",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_5",
+        "nr": "5",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_6",
+        "nr": "6",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_7",
+        "nr": "7",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_8",
+        "nr": "8",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_9",
+        "nr": "9",
+        "color": "blue",
+        "type": "regular",
+        "rule": "",
+        "icon": null
+    },
+    {
+        "id": "blue_10",
+        "nr": "S",
+        "color": "blue",
+        "type": "special",
+        "rule": "next-player-skip-turn",
+        "icon": null
+    },
+    {
+        "id": "blue_11",
+        "nr": "",
+        "color": "blue",
+        "type": "special",
+        "rule": "reverse-direction",
+        "icon": "reverse"
+    },
+    {
+        "id": "blue_12",
+        "nr": "+2",
+        "color": "blue",
+        "type": "special",
+        "rule": "next-player-take-two",
+        "icon": null
+    },
+    {
+        "id": "black_1",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "choose-color",
+        "icon": "choose-color"
+    },
+    {
+        "id": "black_2",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "choose-color",
+        "icon": "choose-color"
+    },
+    {
+        "id": "black_3",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "choose-color",
+        "icon": "choose-color"
+    },
+    {
+        "id": "black_4",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "choose-color",
+        "icon": "choose-color"
+    },
+    {
+        "id": "black_5",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "next-player-take-four",
+        "icon": "next-player-take-four"
+    },
+    {
+        "id": "black_6",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "next-player-take-four",
+        "icon": "next-player-take-four"
+    },
+    {
+        "id": "black_7",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "next-player-take-four",
+        "icon": "next-player-take-four"
+    },
+    {
+        "id": "black_8",
+        "nr": "",
+        "color": "black",
+        "type": "special",
+        "rule": "next-player-take-four",
+        "icon": "next-player-take-four"
+    }
+]

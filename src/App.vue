@@ -7,7 +7,7 @@
                         <div class="content-container">
                             <div class="section">
                                 <ul class="my-cards">
-                                    <app-card :card="card" v-for="card in cards" :key="card.card_id"></app-card>
+                                    <app-card :card="card" v-for="card in cards" :key="card.id"></app-card>
                                 </ul><!-- /.my-cards -->
                             </div><!-- /.section -->
                         </div><!-- /.content-container -->
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import appCard from '@/components/game/Card.vue';
 
 export default {
@@ -28,49 +29,17 @@ export default {
     },
     data() {
         return {
-            cards: [
-                {
-                    card_id: 'red-1',
-                    card_nr: '1',
-                    card_color: 'red'
-                },
-                {
-                    card_id: 'red-2',
-                    card_nr: '2',
-                    card_color: 'red'
-                },
-                {
-                    card_id: 'yellow-1',
-                    card_nr: '1',
-                    card_color: 'yellow'
-                },
-                {
-                    card_id: 'yellow-2',
-                    card_nr: '2',
-                    card_color: 'yellow'
-                },
-                {
-                    card_id: 'green-1',
-                    card_nr: '1',
-                    card_color: 'green'
-                },
-                {
-                    card_id: 'green-2',
-                    card_nr: '2',
-                    card_color: 'green'
-                },
-                {
-                    card_id: 'blue-1',
-                    card_nr: '1',
-                    card_color: 'blue'
-                },
-                {
-                    card_id: 'blue-2',
-                    card_nr: '2',
-                    card_color: 'blue'
-                }
-            ]
+            cards: null
         }
+    },
+    created() {
+        axios.get('/data/deck.json')
+        .then(response => {
+            this.cards = response.data;
+        })
+        .catch(e => {
+            this.errors.push(e)
+        })
     }
 };
 </script>

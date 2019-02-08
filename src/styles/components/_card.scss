@@ -36,6 +36,25 @@
         }
     }
 
+    &__icon {
+        width: 100px;
+        height: 100px;
+
+        &--top {
+            align-self: flex-start;
+            margin-bottom: auto;
+            width: 30px;
+            height: 30px;
+        }
+
+        &--bottom {
+            align-self: flex-end;
+            margin-top: auto;
+            width: 30px;
+            height: 30px;
+        }
+    }
+
     &:not(:last-child) {
         margin-right: 15px;
     }
@@ -54,5 +73,9 @@
 
     &--blue {
         background-color: $blue;
+    }
+
+    &--special {
+        background-color: $black;
     }
 }
