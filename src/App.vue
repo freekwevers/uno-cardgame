@@ -6,7 +6,7 @@
                     <div class="main-container">
                         <div class="content-container">
                             <div class="section">
-
+                                <button class="btn btn--1" @click="dealCards()">Deal</button>
                                 <ul class="my-cards">
                                     <app-card :card="card" v-for="card in gameDeck" :key="card.id"></app-card>
                                 </ul><!-- /.my-cards -->
@@ -31,12 +31,40 @@ export default {
     data() {
         return {
             deck: null,
-            gameDeck: null
+            gameDeck: null,
+            players: [
+                {
+                    name: 'Player 1',
+                    cards: []
+                },
+                {
+                    name: 'Player 2',
+                    cards: []
+                },
+                {
+                    name: 'Player 3',
+                    cards: []
+                },
+                {
+                    name: 'Player 4',
+                    cards: []
+                }
+            ]
         }
     },
     methods: {
-        partCards() {
-            console.log('part cards');
+        dealCards() {
+            // Create random order copy of deck
+            this.gameDeck = [...this.deck];
+            this.gameDeck = this.shuffleDeck(this.gameDeck);
+
+            this.players.forEach(player => {
+                for (let index = 0; index < 7; index++) {
+                    const card = this.gameDeck[index];
+                    player.cards.push(card);
+                    this.gameDeck.splice(index, 1);
+                };
+            });
         },
         shuffleDeck(array) {
             let currentIndex = array.length,
@@ -64,8 +92,6 @@ export default {
         api.getCards('/data/deck.json').getAll()
         .then(response => {
             this.deck = response.data;
-            this.gameDeck = [...this.deck];
-            this.gameDeck = this.shuffleDeck(this.gameDeck)
         })
         .catch((err) => console.log(err));
     }
