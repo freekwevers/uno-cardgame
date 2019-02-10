@@ -4,14 +4,16 @@
 
 .container {
     margin: 0 15px;
-    max-width: 1100px;
+    max-width: calc(100% - 30px);
 
     @include respond-min($mobile) {
         margin: 0 30px;
+        max-width: calc(100% - 60px);
     }
 
     @include respond-min(1100px + 60px) {
         margin: 0 auto;
+        max-width: 1100px;
     }
 }
 
@@ -93,5 +95,17 @@
                 margin-right: 60px;
             }
         }
+    }
+}
+
+
+.playing-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    > * {
+        margin-right: 15px;
+        margin-left: 15px;
     }
 }

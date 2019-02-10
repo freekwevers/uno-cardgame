@@ -8,8 +8,13 @@
                             <div class="section">
                                 <button class="btn btn--1" @click="dealCards" v-if="!gameDeck">Deal</button>
                                 <div v-else>
-                                    <app-deck :gameDeck="gameDeck"></app-deck>
-                                    <app-players :players="players"></app-players>
+                                    <div class="playing-area">
+                                        <app-deck :gameDeck="gameDeck"></app-deck>
+                                        <app-stack :stack="stack"></app-stack>
+                                    </div><!-- /.playing-area -->
+                                    <div class="hands">
+                                        <app-players :players="players"></app-players>
+                                    </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
                         </div><!-- /.content-container -->
@@ -24,6 +29,7 @@
 import api from '@/api';
 import appCard from '@/components/game/Card.vue';
 import appDeck from '@/components/game/Deck.vue';
+import appStack from '@/components/game/Stack.vue';
 import appPlayers from '@/components/game/Players.vue';
 
 export default {
@@ -31,12 +37,14 @@ export default {
     components: {
         appCard,
         appDeck,
+        appStack,
         appPlayers
     },
     data() {
         return {
             deck: null,
             gameDeck: null,
+            stack: [],
             players: [
                 {
                     id: 'player-1',
@@ -74,6 +82,11 @@ export default {
                     this.gameDeck.splice(index, 1);
                 };
             });
+
+            // Move top card to stack
+            this.stack.push(this.gameDeck[0]);
+            // And remove it from deck
+            this.gameDeck.splice(0, 1);
         },
         shuffleDeck(array) {
             let currentIndex = array.length,
