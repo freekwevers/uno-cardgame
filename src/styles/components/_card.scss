@@ -28,6 +28,17 @@
     }
 }
 
+.opponent-cards {
+    .card {
+        background-color: $black;
+
+        &__nr,
+        &__icon {
+            display: none;
+        }
+    }
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -39,6 +50,7 @@
     border: 5px solid $white;
     border-radius: 5px;
     color: $white;
+    cursor: pointer;
 
     &__nr {
         font-size: 52px;

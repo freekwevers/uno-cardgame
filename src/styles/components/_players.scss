@@ -1,0 +1,10 @@
+.players {
+    list-style: none;
+    padding: 0;
+
+    .player {
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+}

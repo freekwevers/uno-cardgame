@@ -7,39 +7,10 @@
                         <div class="content-container">
                             <div class="section">
                                 <button class="btn btn--1" @click="dealCards" v-if="!gameDeck">Deal</button>
-                                <div class="deck-container" v-else>
-                                    <h3>Deck</h3>
-                                    <ul class="deck">
-                                        <app-card :card="card" v-for="card in gameDeck" :key="card.id" @click.native="takeOneCard"></app-card>
-                                    </ul><!-- /.my-cards -->
-                                </div><!-- /.deck-container -->
-                                <ul class="players">
-                                    <li class="player">
-                                        <h3>My cards</h3>
-                                        <ul class="my-cards">
-                                            <app-card :card="card" v-for="card in players[0].cards" :key="card.id" @click.native="playCard"></app-card>
-                                        </ul><!-- /.my-cards -->
-                                    </li>
-                                    <li class="player">
-                                        <h3>Cards player 2</h3>
-                                        <ul class="my-cards">
-                                            <app-card :card="card" v-for="card in players[1].cards" :key="card.id" @click.native="playCard"></app-card>
-                                        </ul><!-- /.my-cards -->
-                                    </li><!-- /.player -->
-                                    <li class="player">
-                                        <h3>Cards player 3</h3>
-                                        <ul class="my-cards">
-                                            <app-card :card="card" v-for="card in players[2].cards" :key="card.id" @click.native="playCard"></app-card>
-                                        </ul><!-- /.my-cards -->
-                                    </li><!-- /.player -->
-                                    <li class="player">
-                                        <h3>Cards player 4</h3>
-                                        <ul class="my-cards">
-                                            <app-card :card="card" v-for="card in players[3].cards" :key="card.id" @click.native="playCard"></app-card>
-                                        </ul><!-- /.my-cards -->
-                                    </li><!-- /.player -->
-                                </ul><!-- /.player -->
-
+                                <div v-else>
+                                    <app-deck :gameDeck="gameDeck"></app-deck>
+                                    <app-players :players="players"></app-players>
+                                </div>
                             </div><!-- /.section -->
                         </div><!-- /.content-container -->
                     </div><!-- /.main-container -->
@@ -52,11 +23,15 @@
 <script>
 import api from '@/api';
 import appCard from '@/components/game/Card.vue';
+import appDeck from '@/components/game/Deck.vue';
+import appPlayers from '@/components/game/Players.vue';
 
 export default {
     name: "app",
     components: {
-        appCard
+        appCard,
+        appDeck,
+        appPlayers
     },
     data() {
         return {
@@ -64,18 +39,22 @@ export default {
             gameDeck: null,
             players: [
                 {
+                    id: 'player-1',
                     name: 'Player 1',
                     cards: []
                 },
                 {
+                    id: 'player-2',
                     name: 'Player 2',
                     cards: []
                 },
                 {
+                    id: 'player-3',
                     name: 'Player 3',
                     cards: []
                 },
                 {
+                    id: 'player-4',
                     name: 'Player 4',
                     cards: []
                 }
@@ -115,12 +94,6 @@ export default {
             }
 
             return array;
-        },
-        takeOneCard() {
-            console.log('take one card');
-        },
-        payCard() {
-            console.log('play card');
         }
     },
     created() {
