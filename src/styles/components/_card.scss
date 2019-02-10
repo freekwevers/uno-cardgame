@@ -1,8 +1,31 @@
-.my-cards {
+.my-cards,
+.opponent-cards {
     display: flex;
     overflow-x: auto;
     padding: 0;
     list-style: none;
+}
+
+.deck {
+    position: relative;
+    height: 240px;
+    min-width: 140px;
+    display: flex;
+    overflow-x: auto;
+    padding: 0;
+    list-style: none;
+
+    .card {
+        background-color: $black;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &__nr,
+        &__icon {
+            display: none;
+        }
+    }
 }
 
 .card {
