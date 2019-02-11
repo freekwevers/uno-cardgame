@@ -44,6 +44,7 @@
 .opponent-cards {
     .card {
         background-color: $black;
+        pointer-events: none;
 
         &__nr,
         &__icon {
