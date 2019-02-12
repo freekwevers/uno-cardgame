@@ -13,6 +13,11 @@
 import appCard from '@/components/game/Card.vue';
 export default {
     props: ['players', 'stack', 'directionIsClockwise'],
+    data() {
+        return {
+            currentColor: null
+        }
+    },
     components: {
         appCard
     },
@@ -26,13 +31,26 @@ export default {
             // Put the clicked card on top op the stack
             this.stack.push(card);
 
+            // Update current card color
+            this.currentColor = card.color;
+
             // Apply the rules provided by the card
-            // this.applyRules(card);
+            this.applyRules(card);
 
             this.changeTurn();
         },
         applyRules(card) {
-            console.log(card);
+            if ( card.rule === 'next-player-skip-turn' ) {
+                console.log('beurt overslaan');
+            } else if ( card.rule === 'reverse-direction' ) {
+                console.log('verander richting');
+            } else if ( card.rule === 'next-player-take-two' ) {
+                console.log('volgende speler pakt 2 kaarten en slaat zijn beurt over');
+            } else if ( card.rule === 'next-player-take-four' ) {
+                console.log('volgende speler pakt 4 kaarten en slaat zijn beurt over');
+            } else if ( card.rule === 'choose-color' ) {
+                console.log('kies een kleur');
+            }
         },
         changeTurn() {
             const currentPlayerIndex = this.players.findIndex((player) => player.turn);
@@ -52,6 +70,9 @@ export default {
                 }
             }
         }
+    },
+    created() {
+        this.currentColor = this.stack[0].color;
     }
 }
 </script>

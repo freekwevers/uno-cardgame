@@ -90,7 +90,7 @@ export default {
 
             // Move top card to stack
             this.stack.push(this.gameDeck[0]);
-            // And remove it from deck
+            // And remove card from deck
             this.gameDeck.splice(0, 1);
         },
         shuffleDeck(array) {

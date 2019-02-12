@@ -38,6 +38,10 @@
 .stack {
     .card {
         cursor: default;
+
+        &:last-child {
+            z-index: 1;
+        }
     }
 }
 
@@ -124,7 +128,7 @@
         background-color: $blue;
     }
 
-    &--special {
+    &--black {
         background-color: $black;
     }
 }
