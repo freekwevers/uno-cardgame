@@ -13,7 +13,7 @@
                                         <app-stack :stack="stack"></app-stack>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players"></app-players>
+                                        <app-players :players="players" :stack="stack"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -49,24 +49,29 @@ export default {
                 {
                     id: 'player-1',
                     name: 'Player 1',
-                    cards: []
+                    cards: [],
+                    turn: true
                 },
                 {
                     id: 'player-2',
                     name: 'Player 2',
-                    cards: []
+                    cards: [],
+                    turn: false
                 },
                 {
                     id: 'player-3',
                     name: 'Player 3',
-                    cards: []
+                    cards: [],
+                    turn: false
                 },
                 {
                     id: 'player-4',
                     name: 'Player 4',
-                    cards: []
+                    cards: [],
+                    turn: false
                 }
-            ]
+            ],
+            directionIsClockwise: true
         }
     },
     methods: {
@@ -107,6 +112,9 @@ export default {
             }
 
             return array;
+        },
+        changeDirection() {
+            this.directionIsClockwise = !this.directionIsClockwise;
         }
     },
     created() {

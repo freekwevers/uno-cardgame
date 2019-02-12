@@ -4,7 +4,7 @@
             <h3 v-if="index === 0">My cards</h3>
             <h3 v-else>Cards {{ player.name}}</h3>
             <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0}">
-                <app-card :card="card" v-for="card in players[index].cards" :key="card.id" @click.native="playCard"></app-card>
+                <app-card :card="card" v-for="card in players[index].cards" :key="card.id" @click.native="playCard(card, players[index], $event)"></app-card>
             </ul><!-- /.my-cards -->
         </li>
     </ul><!-- /.player -->
@@ -12,14 +12,26 @@
 <script>
 import appCard from '@/components/game/Card.vue';
 export default {
-    props: ['players'],
+    props: ['players', 'stack'],
     components: {
         appCard
     },
     methods: {
-        playCard() {
-            console.log('play card');
+        playCard(card, player, event) {
+
+            // Get index from the card in players hand
+            const cardIndex = player.cards.findIndex((playerCard) => card === playerCard);
+
+            // Use this index to remove this item from the players hand
+            player.cards.splice(cardIndex, 1);
+
+            // Put the clicked card on top op the stack
+            this.stack.push(card);
+
+            // Apply the rules provided by the card
+
         }
+
     }
 }
 </script>
