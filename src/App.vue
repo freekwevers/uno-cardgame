@@ -13,7 +13,7 @@
                                         <app-stack :stack="stack"></app-stack>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack"></app-players>
+                                        <app-players :players="players" :stack="stack" :directionIsClockwise="directionIsClockwise"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -71,7 +71,7 @@ export default {
                     turn: false
                 }
             ],
-            directionIsClockwise: true
+            directionIsClockwise: false
         }
     },
     methods: {
