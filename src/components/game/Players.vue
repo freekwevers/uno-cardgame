@@ -17,11 +17,12 @@
 <script>
 import appCard from '@/components/game/Card.vue';
 export default {
-    props: ['players', 'stack', 'directionIsClockwise', 'deck'],
+    props: ['players', 'stack', 'deck'],
     data() {
         return {
             currentColor: null,
-            currentNumber: null
+            currentNumber: null,
+            directionIsClockwise: false
         }
     },
     components: {
@@ -49,13 +50,14 @@ export default {
             // Apply the rules provided by the card
             this.applyRules(card);
 
-            this.changeTurn();
+            this.changeTurn(false);
         },
         applyRules(card) {
             if ( card.rule === 'next-player-skip-turn' ) {
-                console.log('beurt overslaan');
+                // console.log('beurt overslaan');
+                this.changeTurn(true);
             } else if ( card.rule === 'reverse-direction' ) {
-                console.log('verander richting');
+                this.directionIsClockwise = !this.directionIsClockwise;
             } else if ( card.rule === 'next-player-take-two' ) {
                 console.log('volgende speler pakt 2 kaarten en slaat zijn beurt over');
             } else if ( card.rule === 'next-player-take-four' ) {
@@ -81,21 +83,41 @@ export default {
         currentPlayer() {
             return this.players.find((player) => player.turn );
         },
-        changeTurn() {
+        changeTurn(skip) {
             const currentPlayerIndex = this.players.findIndex((player) => player.turn);
             this.players[currentPlayerIndex].turn = false;
 
             if ( this.directionIsClockwise ) {
-                if ( currentPlayerIndex < this.players.length - 1 ) {
-                    this.players[currentPlayerIndex + 1].turn = true;
+                if ( skip  ) {
+                    if ( currentPlayerIndex < this.players.length - 2 ) {
+                        this.players[currentPlayerIndex + 2].turn = true;
+                    } else if ( currentPlayerIndex < this.players.length - 1 ) {
+                        this.players[1].turn = true;
+                    } else {
+                        this.players[0].turn = true;
+                    }
                 } else {
-                    this.players[0].turn = true;
+                    if ( currentPlayerIndex < this.players.length - 1 ) {
+                        this.players[currentPlayerIndex + 1].turn = true;
+                    } else {
+                        this.players[0].turn = true;
+                    }
                 }
             } else {
-                if ( currentPlayerIndex === 0 ) {
-                    this.players[this.players.length - 1].turn = true;
+                if ( skip ) {
+                    if ( currentPlayerIndex === 0 ) {
+                        this.players[this.players.length - 2].turn = true;
+                    } else if ( currentPlayerIndex === 1) {
+                        this.players[this.players.length - 1].turn = true;
+                    } else {
+                        this.players[currentPlayerIndex - 2].turn = true;
+                    }
                 } else {
-                    this.players[currentPlayerIndex - 1].turn = true;
+                    if ( currentPlayerIndex === 0 ) {
+                        this.players[this.players.length - 1].turn = true;
+                    } else {
+                        this.players[currentPlayerIndex - 1].turn = true;
+                    }
                 }
             }
 
@@ -106,7 +128,7 @@ export default {
             const card = this.deck[0];
             this.deck.splice(0, 1);
             this.currentPlayer().cards.push(card);
-            this.changeTurn();
+            this.changeTurn(false);
         },
         callWinner(player) {
             alert(player.name + 'wins!!!');
