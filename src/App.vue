@@ -13,7 +13,7 @@
                                         <app-stack :stack="stack"></app-stack>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :deck="deck"></app-players>
+                                        <app-players :players="players" :stack="stack" :deck="deck" @addToStackEvent="addCardToStack"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -111,6 +111,9 @@ export default {
             }
 
             return array;
+        },
+        addCardToStack(card) {
+            this.stack.push(card);
         },
         changeDirection() {
             this.directionIsClockwise = !this.directionIsClockwise;

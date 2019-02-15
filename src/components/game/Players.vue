@@ -36,7 +36,8 @@ export default {
             // Use this index to remove this item from the players hand
             player.cards.splice(cardIndex, 1);
             // Put the clicked card on top op the stack
-            this.stack.push(card);
+            this.$emit('addToStackEvent', card);
+            // this.stack.push(card);
 
             if ( player.cards.length === 0 ) {
                 this.callWinner(player);
