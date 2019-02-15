@@ -7,6 +7,11 @@
     list-style: none;
 }
 
+.my-cards,
+.opponent-cards {
+    padding-top: 25px;
+}
+
 .deck,
 .stack {
     position: relative;
@@ -47,13 +52,13 @@
 
 .opponent-cards {
     .card {
-        background-color: $black;
-        pointer-events: none;
+        // background-color: $black;
+        // pointer-events: none;
 
-        &__nr,
-        &__icon {
-            display: none;
-        }
+        // &__nr,
+        // &__icon {
+        //     display: none;
+        // }
     }
 }
 
@@ -69,6 +74,15 @@
     border-radius: 5px;
     color: $white;
     cursor: pointer;
+    pointer-events: none;
+    transition: .2s ease;
+
+    .turn & {
+        &.is-playable {
+            transform: translate3d(0,-25px, 0);
+            pointer-events: auto;
+        }
+    }
 
     &__nr {
         font-size: 72px;

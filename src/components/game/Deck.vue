@@ -2,7 +2,7 @@
     <div class="deck-container">
         <h3>Deck</h3>
         <ul class="deck">
-            <app-card :card="card" v-for="card in gameDeck" :key="card.id" @click.native="takeOneCard"></app-card>
+            <app-card :card="card" v-for="card in gameDeck" :key="card.id"></app-card>
         </ul><!-- /.my-cards -->
     </div><!-- /.deck-container -->
 </template>
@@ -11,9 +11,7 @@ import appCard from '@/components/game/Card.vue';
 export default {
     props: ['gameDeck'],
     methods: {
-        takeOneCard() {
-            console.log('take one card');
-        }
+
     },
     components: {
         appCard

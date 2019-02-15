@@ -1,10 +1,15 @@
 <template>
     <ul class="players">
-        <li class="player" v-for="(player, index) in players" :key="player.id">
+        <li class="player" v-for="(player, index) in players" :key="player.id" :class="{'turn': player.turn}">
             <h3 v-if="index === 0">My cards</h3>
             <h3 v-else>Cards {{ player.name}}</h3>
-            <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0}">
-                <app-card :card="card" v-for="card in players[index].cards" :key="card.id" @click.native="playCard(card, players[index], $event)"></app-card>
+            <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0 }">
+                <app-card
+                :card="card"
+                v-for="card in players[index].cards"
+                :key="card.id"
+                @click.native="playCard(card, players[index], $event)"
+                :class="{'is-playable': card.playable}"></app-card>
             </ul><!-- /.my-cards -->
         </li>
     </ul><!-- /.player -->
@@ -12,10 +17,11 @@
 <script>
 import appCard from '@/components/game/Card.vue';
 export default {
-    props: ['players', 'stack', 'directionIsClockwise'],
+    props: ['players', 'stack', 'directionIsClockwise', 'deck'],
     data() {
         return {
-            currentColor: null
+            currentColor: null,
+            currentNumber: null
         }
     },
     components: {
@@ -31,8 +37,14 @@ export default {
             // Put the clicked card on top op the stack
             this.stack.push(card);
 
+            if ( player.cards.length === 0 ) {
+                this.callWinner(player);
+                return;
+            }
+
             // Update current card color
             this.currentColor = card.color;
+            this.currentNumber = card.nr;
 
             // Apply the rules provided by the card
             this.applyRules(card);
@@ -52,6 +64,23 @@ export default {
                 console.log('kies een kleur');
             }
         },
+        markAllowedCards(player) {
+            const cards = player.cards;
+            cards.forEach(card => {
+                if ( card.color === this.currentColor || card.color === 'black' || this.currentColor === 'black' || card.nr === this.currentNumber ) {
+                    card.playable = true;
+                } else {
+                    card.playable = false;
+                }
+            });
+
+            if ( !cards.find((card) => card.playable ) ) {
+                this.takeCard(1);
+            }
+        },
+        currentPlayer() {
+            return this.players.find((player) => player.turn );
+        },
         changeTurn() {
             const currentPlayerIndex = this.players.findIndex((player) => player.turn);
             this.players[currentPlayerIndex].turn = false;
@@ -69,10 +98,24 @@ export default {
                     this.players[currentPlayerIndex - 1].turn = true;
                 }
             }
+
+            this.markAllowedCards(this.currentPlayer());
+        },
+        takeCard(nr) {
+            console.log('take ' + nr);
+            const card = this.deck[0];
+            this.deck.splice(0, 1);
+            this.currentPlayer().cards.push(card);
+            this.changeTurn();
+        },
+        callWinner(player) {
+            alert(player.name + 'wins!!!');
         }
     },
     created() {
         this.currentColor = this.stack[0].color;
+        this.currentNumber = this.stack[0].nr;
+        this.markAllowedCards(this.currentPlayer());
     }
 }
 </script>

@@ -13,7 +13,7 @@
                                         <app-stack :stack="stack"></app-stack>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :directionIsClockwise="directionIsClockwise"></app-players>
+                                        <app-players :players="players" :stack="stack" :directionIsClockwise="directionIsClockwise" :deck="deck"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
