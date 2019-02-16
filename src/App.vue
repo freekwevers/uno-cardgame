@@ -13,7 +13,7 @@
                                         <app-stack :stack="stack"></app-stack>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :deck="deck" @addToStackEvent="addCardToStack"></app-players>
+                                        <app-players :players="players" :stack="stack" :deck="deck" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -70,7 +70,8 @@ export default {
                     cards: [],
                     turn: false
                 }
-            ]
+            ],
+            directionIsClockwise: false
         }
     },
     methods: {
@@ -116,6 +117,7 @@ export default {
             this.stack.push(card);
         },
         changeDirection() {
+            console.log('change direction');
             this.directionIsClockwise = !this.directionIsClockwise;
         }
     },

@@ -17,12 +17,11 @@
 <script>
 import appCard from '@/components/game/Card.vue';
 export default {
-    props: ['players', 'stack', 'deck'],
+    props: ['players', 'stack', 'deck', 'directionIsClockwise'],
     data() {
         return {
             currentColor: null,
-            currentNumber: null,
-            directionIsClockwise: false
+            currentNumber: null
         }
     },
     components: {
@@ -37,7 +36,6 @@ export default {
             player.cards.splice(cardIndex, 1);
             // Put the clicked card on top op the stack
             this.$emit('addToStackEvent', card);
-            // this.stack.push(card);
 
             if ( player.cards.length === 0 ) {
                 this.callWinner(player);
@@ -51,20 +49,30 @@ export default {
             // Apply the rules provided by the card
             this.applyRules(card);
 
-            this.changeTurn(false);
         },
         applyRules(card) {
             if ( card.rule === 'next-player-skip-turn' ) {
-                // console.log('beurt overslaan');
                 this.changeTurn(true);
             } else if ( card.rule === 'reverse-direction' ) {
-                this.directionIsClockwise = !this.directionIsClockwise;
-            } else if ( card.rule === 'next-player-take-two' ) {
-                console.log('volgende speler pakt 2 kaarten en slaat zijn beurt over');
-            } else if ( card.rule === 'next-player-take-four' ) {
-                console.log('volgende speler pakt 4 kaarten en slaat zijn beurt over');
+                this.$emit('changeDirectionEvent');
+                setTimeout(() => {
+                    this.changeTurn(false);
+                }, 500)
+            } else if ( card.rule === 'next-player-take-two' || card.rule === 'next-player-take-four' ) {
+                setTimeout(() => {
+                    this.changeTurn(false, card.rule);
+                }, 500);
             } else if ( card.rule === 'choose-color' ) {
                 console.log('kies een kleur');
+                // Next player
+                setTimeout(() => {
+                    this.changeTurn(false);
+                }, 500);
+            } else if ( !card.rule ) {
+                // Next player
+                setTimeout(() => {
+                    this.changeTurn(false);
+                }, 500);
             }
         },
         markAllowedCards(player) {
@@ -84,7 +92,8 @@ export default {
         currentPlayer() {
             return this.players.find((player) => player.turn );
         },
-        changeTurn(skip) {
+        changeTurn(skip, rule) {
+
             const currentPlayerIndex = this.players.findIndex((player) => player.turn);
             this.players[currentPlayerIndex].turn = false;
 
