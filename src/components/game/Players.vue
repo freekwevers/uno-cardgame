@@ -59,15 +59,38 @@ export default {
                     this.changeTurn(false);
                 }, 500)
             } else if ( card.rule === 'next-player-take-two' || card.rule === 'next-player-take-four' ) {
-                setTimeout(() => {
-                    this.changeTurn(false, card.rule);
-                }, 500);
+                const currentPlayerIndex = this.players.findIndex((player) => player.turn);
+                this.players[currentPlayerIndex].turn = false;
+
+                if ( this.directionIsClockwise ) {
+                    if ( currentPlayerIndex < this.players.length - 1 ) {
+                        this.players[currentPlayerIndex + 1].turn = true;
+                    } else {
+                        this.players[0].turn = true;
+                    }
+                } else {
+                    if ( currentPlayerIndex === 0 ) {
+                        this.players[this.players.length - 1].turn = true;
+                    } else {
+                        this.players[currentPlayerIndex - 1].turn = true;
+                    }
+                }
+
+                if ( card.rule === 'next-player-take-two' ) {
+                    this.takeCard(2);
+                }
+
+                if ( card.rule === 'next-player-take-four' ) {
+                    this.takeCard(4);
+                }
+
             } else if ( card.rule === 'choose-color' ) {
                 console.log('kies een kleur');
                 // Next player
                 setTimeout(() => {
                     this.changeTurn(false);
                 }, 500);
+
             } else if ( !card.rule ) {
                 // Next player
                 setTimeout(() => {
@@ -134,11 +157,20 @@ export default {
             this.markAllowedCards(this.currentPlayer());
         },
         takeCard(nr) {
+            for (let index = 0; index < nr; index++) {
+                const card = this.deck[0];
+                this.deck.splice(0, 1);
+                this.currentPlayer().cards.push(card);
+            }
+
+            setTimeout(() => {
+                this.changeTurn(false);
+            }, 500);
+
+
+            // TODO update take card to handle multiple cards
             console.log('take ' + nr);
-            const card = this.deck[0];
-            this.deck.splice(0, 1);
-            this.currentPlayer().cards.push(card);
-            this.changeTurn(false);
+
         },
         callWinner(player) {
             alert(player.name + 'wins!!!');
