@@ -59,22 +59,8 @@ export default {
                     this.changeTurn(false);
                 }, 500)
             } else if ( card.rule === 'next-player-take-two' || card.rule === 'next-player-take-four' ) {
-                const currentPlayerIndex = this.players.findIndex((player) => player.turn);
-                this.players[currentPlayerIndex].turn = false;
 
-                if ( this.directionIsClockwise ) {
-                    if ( currentPlayerIndex < this.players.length - 1 ) {
-                        this.players[currentPlayerIndex + 1].turn = true;
-                    } else {
-                        this.players[0].turn = true;
-                    }
-                } else {
-                    if ( currentPlayerIndex === 0 ) {
-                        this.players[this.players.length - 1].turn = true;
-                    } else {
-                        this.players[currentPlayerIndex - 1].turn = true;
-                    }
-                }
+                this.nextPlayer(false);
 
                 if ( card.rule === 'next-player-take-two' ) {
                     this.takeCard(2);
@@ -112,11 +98,7 @@ export default {
                 this.takeCard(1);
             }
         },
-        currentPlayer() {
-            return this.players.find((player) => player.turn );
-        },
-        changeTurn(skip, rule) {
-
+        nextPlayer(skip) {
             const currentPlayerIndex = this.players.findIndex((player) => player.turn);
             this.players[currentPlayerIndex].turn = false;
 
@@ -153,7 +135,12 @@ export default {
                     }
                 }
             }
-
+        },
+        currentPlayer() {
+            return this.players.find((player) => player.turn );
+        },
+        changeTurn(skip) {
+            this.nextPlayer(skip);
             this.markAllowedCards(this.currentPlayer());
         },
         takeCard(nr) {
