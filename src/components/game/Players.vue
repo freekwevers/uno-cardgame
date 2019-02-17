@@ -17,7 +17,7 @@
 <script>
 import appCard from '@/components/game/Card.vue';
 export default {
-    props: ['players', 'stack', 'deck', 'directionIsClockwise'],
+    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise'],
     data() {
         return {
             currentColor: null,
@@ -145,8 +145,8 @@ export default {
         },
         takeCard(nr) {
             for (let index = 0; index < nr; index++) {
-                const card = this.deck[0];
-                this.deck.splice(0, 1);
+                const card = this.gameDeck[0];
+                this.gameDeck.splice(0, 1);
                 this.currentPlayer().cards.push(card);
             }
 
