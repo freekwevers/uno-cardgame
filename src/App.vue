@@ -7,13 +7,13 @@
                         <div class="content-container">
                             <div class="section">
                                 <button class="btn btn--1" @click="dealCards" v-if="!gameDeck">Deal</button>
-                                <div v-else>
+                                <div class="table" v-else>
                                     <div class="playing-area">
                                         <app-deck :gameDeck="gameDeck"></app-deck>
                                         <app-stack :stack="stack"></app-stack>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection"></app-players>
+                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentColorChangeEvent="changeCurrentColor" @currentNumberChangeEvent="changeCurrentNumber"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -21,6 +21,9 @@
                     </div><!-- /.main-container -->
                 </div><!-- /.container -->
             </main><!-- /.main -->
+            <transition name="fade">
+                <app-choose-color v-if="modalVisible"></app-choose-color>
+            </transition>
         </div><!-- /.body-wrapper -->
     </div><!-- /#app -->
 </template>
@@ -31,6 +34,7 @@ import appCard from '@/components/game/Card.vue';
 import appDeck from '@/components/game/Deck.vue';
 import appStack from '@/components/game/Stack.vue';
 import appPlayers from '@/components/game/Players.vue';
+import appChooseColor from '@/components/game/ChooseColor.vue';
 
 export default {
     name: "app",
@@ -38,7 +42,8 @@ export default {
         appCard,
         appDeck,
         appStack,
-        appPlayers
+        appPlayers,
+        appChooseColor
     },
     data() {
         return {
@@ -71,7 +76,10 @@ export default {
                     turn: false
                 }
             ],
-            directionIsClockwise: false
+            directionIsClockwise: false,
+            currentColor: null,
+            currentNumber: null,
+            modalVisible: false
         }
     },
     methods: {
@@ -90,8 +98,13 @@ export default {
 
             // Move top card to stack
             this.stack.push(this.gameDeck[0]);
+
             // And remove card from deck
             this.gameDeck.splice(0, 1);
+
+            // Set current number and color
+            this.currentColor = this.stack[0].color;
+            this.currentNumber = this.stack[0].nr;
         },
         shuffleDeck(array) {
             let currentIndex = array.length,
@@ -117,8 +130,13 @@ export default {
             this.stack.push(card);
         },
         changeDirection() {
-            console.log('change direction');
             this.directionIsClockwise = !this.directionIsClockwise;
+        },
+        changeCurrentColor(color) {
+            this.currentColor = color;
+        },
+        changeCurrentNumber(number) {
+            this.currentNumber = number;
         }
     },
     created() {
