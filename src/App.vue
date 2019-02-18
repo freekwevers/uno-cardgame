@@ -21,9 +21,6 @@
                     </div><!-- /.main-container -->
                 </div><!-- /.container -->
             </main><!-- /.main -->
-            <transition name="fade">
-                <app-choose-color v-if="modalVisible"></app-choose-color>
-            </transition>
         </div><!-- /.body-wrapper -->
     </div><!-- /#app -->
 </template>
@@ -34,7 +31,6 @@ import appCard from '@/components/game/Card.vue';
 import appDeck from '@/components/game/Deck.vue';
 import appStack from '@/components/game/Stack.vue';
 import appPlayers from '@/components/game/Players.vue';
-import appChooseColor from '@/components/game/ChooseColor.vue';
 
 export default {
     name: "app",
@@ -42,8 +38,7 @@ export default {
         appCard,
         appDeck,
         appStack,
-        appPlayers,
-        appChooseColor
+        appPlayers
     },
     data() {
         return {
@@ -78,8 +73,7 @@ export default {
             ],
             directionIsClockwise: false,
             currentColor: null,
-            currentNumber: null,
-            modalVisible: false
+            currentNumber: null
         }
     },
     methods: {

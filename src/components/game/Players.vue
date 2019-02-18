@@ -1,31 +1,38 @@
 <template>
-    <ul class="players">
-        <li class="player" v-for="(player, index) in players" :key="player.id" :class="{'turn': player.turn}">
-            <h3 v-if="index === 0">My cards</h3>
-            <h3 v-else>Cards {{ player.name}}</h3>
-            <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0 }">
-                <app-card
-                :card="card"
-                v-for="card in players[index].cards"
-                :key="card.id"
-                @click.native="playCard(card, players[index], $event)"
-                :class="{'is-playable': card.playable}"></app-card>
-            </ul><!-- /.my-cards -->
-        </li>
-    </ul><!-- /.player -->
+    <div class="players-container">
+        <ul class="players">
+            <li class="player" v-for="(player, index) in players" :key="player.id" :class="{'turn': player.turn}">
+                <h3 v-if="index === 0">My cards</h3>
+                <h3 v-else>Cards {{ player.name}}</h3>
+                <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0 }">
+                    <app-card
+                    :card="card"
+                    v-for="card in players[index].cards"
+                    :key="card.id"
+                    @click.native="playCard(card, players[index], $event)"
+                    :class="{'is-playable': card.playable}"></app-card>
+                </ul><!-- /.my-cards -->
+            </li>
+        </ul><!-- /.player -->
+        <transition name="fade">
+            <app-choose-color v-if="modalVisible" @chooseColorEvent="chooseColor"></app-choose-color>
+        </transition>
+    </div>
 </template>
 <script>
 import appCard from '@/components/game/Card.vue';
+import appChooseColor from '@/components/game/ChooseColor.vue';
+
 export default {
-    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise', 'currentColor', 'currentNumber'],
     data() {
         return {
-            // currentColor: null,
-            // currentNumber: null
+            modalVisible: false
         }
     },
+    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise', 'currentColor', 'currentNumber'],
     components: {
-        appCard
+        appCard,
+        appChooseColor
     },
     methods: {
 
@@ -87,12 +94,7 @@ export default {
 
             // Choose a color rule
             else if ( card.rule === 'choose-color' ) {
-                console.log('kies een kleur');
-                // Next player
-                setTimeout(() => {
-                    this.changeTurn(false);
-                }, 500);
-
+                this.modalVisible = true;
             }
 
             // If last card didn't trigger a specific rule,
@@ -113,7 +115,7 @@ export default {
             cards.forEach(card => {
 
                 // Mark each card as (un)playable
-                if ( card.color === this.currentColor || card.color === 'black' || this.currentColor === 'black' || card.nr === this.currentNumber ) {
+                if ( card.color === this.currentColor || card.color === 'black' || this.currentColor === 'black' || (card.nr === this.currentNumber && this.currentNumber !== '') ) {
                     card.playable = true;
                 } else {
                     card.playable = false;
@@ -190,12 +192,27 @@ export default {
 
         },
 
+        chooseColor(color) {
+            this.$emit('currentColorChangeEvent', color);
+            this.modalVisible = false;
+
+            // Next player
+            setTimeout(() => {
+                this.changeTurn(false);
+            }, 500);
+
+        },
+
         callWinner(player) {
             alert(player.name + 'wins!!!');
         }
     },
     created() {
         this.markAllowedCards(this.currentPlayer());
+
+        document.addEventListener('color-cosen', () => {
+            console.log('color chosen');
+        });
     }
 }
 </script>

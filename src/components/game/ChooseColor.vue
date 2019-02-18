@@ -2,17 +2,8 @@
     <div class="modal">
         <div class="modal__inner">
             <ul class="colors">
-                <li class="color">
-                    <button class="card card--red" @click="chooseColor"></button><!-- /.card -->
-                </li>
-                <li class="color">
-                    <button class="card card--yellow"></button><!-- /.card -->
-                </li>
-                <li class="color">
-                    <button class="card card--green"></button><!-- /.card -->
-                </li>
-                <li class="color">
-                    <button class="card card--blue"></button><!-- /.card -->
+                <li v-for="color in colors" class="color">
+                    <button class="card" :class="['card--' + color]" @click="chooseColor(color)"></button>
                 </li>
             </ul>
         </div><!-- /.modal__inner -->
@@ -20,9 +11,14 @@
 </template>
 <script>
     export default {
+        data() {
+            return {
+                colors: ['red', 'yellow', 'green', 'blue']
+            }
+        },
         methods: {
-            chooseColor() {
-                console.log('choose color');
+            chooseColor(color) {
+                this.$emit('chooseColorEvent', color);
             }
         }
     }
