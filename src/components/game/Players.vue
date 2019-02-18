@@ -9,7 +9,7 @@
                     :card="card"
                     v-for="card in players[index].cards"
                     :key="card.id"
-                    @click.native="playCard(card, players[index], $event)"
+                    @click.native="playCard(card, players[index])"
                     :class="{'is-playable': card.playable}"></app-card>
                 </ul><!-- /.my-cards -->
             </li>
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
 
-        playCard(card, player, event) {
+        playCard(card, player) {
 
             // Get index from the card in players hand
             const cardIndex = player.cards.findIndex((playerCard) => card === playerCard);
@@ -95,6 +95,21 @@ export default {
             // Choose a color rule
             else if ( card.rule === 'choose-color' ) {
                 this.modalVisible = true;
+
+                if ( this.currentPlayer().computerPlayer ) {
+                    let numberOfColors = {
+                        'red': this.currentPlayer().cards.filter(card => card.color === 'red').length,
+                        'yellow': this.currentPlayer().cards.filter(card => card.color === 'yellow').length,
+                        'green': this.currentPlayer().cards.filter(card => card.color === 'green').length,
+                        'blue': this.currentPlayer().cards.filter(card => card.color === 'blue').length
+                    }
+
+                    const colorToChoose = Object.keys(numberOfColors).reduce((a, b) => numberOfColors[a] > numberOfColors[b] ? a : b);
+
+                    setTimeout(() => {
+                        this.chooseColor(colorToChoose);
+                    }, 1000);
+                }
             }
 
             // If last card didn't trigger a specific rule,
@@ -177,6 +192,23 @@ export default {
         changeTurn(skip) {
             this.nextPlayer(skip);
             this.markAllowedCards(this.currentPlayer());
+
+            if ( this.currentPlayer().computerPlayer ) {
+                this.computerPlayerPlayCard();
+            }
+        },
+
+        computerPlayerPlayCard() {
+            const thinkingTime = Math.floor(Math.random() * 500) + 3000;
+            const cardToPlay = this.currentPlayer().cards.find(card => card.playable);
+
+            setTimeout(() => {
+                if ( cardToPlay ) {
+                    this.playCard(cardToPlay, this.currentPlayer());
+                } else {
+                    this.takeCard(1);
+                }
+            }, thinkingTime);
         },
 
         takeCard(nr) {
@@ -204,15 +236,12 @@ export default {
         },
 
         callWinner(player) {
+            // TODO create fancy modal with reset button
             alert(player.name + 'wins!!!');
         }
     },
     created() {
         this.markAllowedCards(this.currentPlayer());
-
-        document.addEventListener('color-cosen', () => {
-            console.log('color chosen');
-        });
     }
 }
 </script>

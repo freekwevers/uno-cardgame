@@ -50,25 +50,29 @@ export default {
                     id: 'player-1',
                     name: 'Player 1',
                     cards: [],
-                    turn: true
+                    turn: true,
+                    computerPlayer: false
                 },
                 {
                     id: 'player-2',
                     name: 'Player 2',
                     cards: [],
-                    turn: false
+                    turn: false,
+                    computerPlayer: true
                 },
                 {
                     id: 'player-3',
                     name: 'Player 3',
                     cards: [],
-                    turn: false
+                    turn: false,
+                    computerPlayer: true
                 },
                 {
                     id: 'player-4',
                     name: 'Player 4',
                     cards: [],
-                    turn: false
+                    turn: false,
+                    computerPlayer: true
                 }
             ],
             directionIsClockwise: false,
