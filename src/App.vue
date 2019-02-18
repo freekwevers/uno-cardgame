@@ -11,6 +11,9 @@
                                     <div class="playing-area">
                                         <app-deck :gameDeck="gameDeck"></app-deck>
                                         <app-stack :stack="stack"></app-stack>
+                                        <div :class="{ 'is-active': stack[stack.length - 1].rule === 'choose-color'}" class="current-color">
+                                            <div class="current-color__inner" :class="['current-color--' + currentColor]"></div>
+                                        </div>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
                                         <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentColorChangeEvent="changeCurrentColor" @currentNumberChangeEvent="changeCurrentNumber"></app-players>
@@ -150,4 +153,5 @@ export default {
 
 <style lang="scss">
     @import 'styles/style.scss';
+    @import 'styles/components/current-color';
 </style>
