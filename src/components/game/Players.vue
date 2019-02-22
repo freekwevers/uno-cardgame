@@ -29,7 +29,7 @@ export default {
             modalVisible: false
         }
     },
-    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise', 'currentColor', 'currentNumber'],
+    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise', 'currentColor', 'currentNumber', 'customEvents'],
     components: {
         appCard,
         appChooseColor
@@ -45,81 +45,91 @@ export default {
             // Put the clicked card on top op the stack
             this.$emit('addToStackEvent', card);
 
-            if ( player.cards.length === 0 ) {
-                this.callWinner(player);
-                return;
-            }
+            // if ( player.cards.length === 0 ) {
+            //     this.callWinner(player);
+            //     return;
+            // }
 
-            // Update current card color
-            this.$emit('currentColorChangeEvent', card.color);
-            this.$emit('currentNumberChangeEvent', card.nr);
+            // Update current card
+            this.$emit('currentCardChangeEvent', {color: card.color, number: card.nr, byRule: false});
 
             // Apply the rules provided by the card
-            this.applyRules(card);
+            // this.applyRules(card);
         },
 
         applyRules(card) {
 
             // Skip turn rule
-            if ( card.rule === 'next-player-skip-turn' ) {
-                this.changeTurn(true);
-            }
+            // if ( card.rule === 'next-player-skip-turn' ) {
+            //     // setTimeout(() => {
+            //     //     this.changeTurn(true);
+            //     // }, 500);
+
+            //     // TEMP
+            //     this.changeTurn(false);
+            // }
 
             // Reverse direction of play rule
-            else if ( card.rule === 'reverse-direction' ) {
-                this.$emit('changeDirectionEvent');
-                setTimeout(() => {
-                    this.changeTurn(false);
-                }, 500);
-            }
+            // else if ( card.rule === 'reverse-direction' ) {
+            //     // this.$emit('changeDirectionEvent');
+            //     // setTimeout(() => {
+            //     //     this.changeTurn(false);
+            //     // }, 500);
+
+            //     // TEMP
+            //     this.changeTurn(false);
+            // }
 
             // Next player take 2 / 4 cards rule
-            else if ( card.rule === 'next-player-take-two' || card.rule === 'next-player-take-four' ) {
+            // else if ( card.rule === 'next-player-take-two' || card.rule === 'next-player-take-four' ) {
 
-                // First go to next player
-                this.nextPlayer(false);
+            //     // // First go to next player
+            //     // this.nextPlayer(false);
 
-                // Take 2 cards
-                if ( card.rule === 'next-player-take-two' ) {
-                    // The takeCard makes the player take the cards and skip his turn
-                    this.takeCard(2);
-                }
+            //     // // Take 2 cards
+            //     // if ( card.rule === 'next-player-take-two' ) {
+            //     //     // The takeCard makes the player take the cards and skip his turn
+            //     //     this.takeCard(2);
+            //     // }
 
-                // Take 4 cards
-                if ( card.rule === 'next-player-take-four' ) {
-                    // The takeCard makes the player take the cards and skip his turn
-                    this.takeCard(4);
-                }
-            }
+            //     // // Take 4 cards
+            //     // if ( card.rule === 'next-player-take-four' ) {
+            //     //     // The takeCard makes the player take the cards and skip his turn
+            //     //     this.takeCard(4);
+            //     // }
+
+            //     // TEMP UNTIL RULES ARE PROPERLY APPLIED
+            //     // Next player
+            //     this.changeTurn(false);
+            // }
 
             // Choose a color rule
-            else if ( card.rule === 'choose-color' ) {
-                this.modalVisible = true;
+            // else if ( card.rule === 'choose-color' ) {
 
-                if ( this.currentPlayer().computerPlayer ) {
-                    let numberOfColors = {
-                        'red': this.currentPlayer().cards.filter(card => card.color === 'red').length,
-                        'yellow': this.currentPlayer().cards.filter(card => card.color === 'yellow').length,
-                        'green': this.currentPlayer().cards.filter(card => card.color === 'green').length,
-                        'blue': this.currentPlayer().cards.filter(card => card.color === 'blue').length
-                    }
+            //     if ( this.currentPlayer().computerPlayer ) {
+            //         let numberOfColors = {
+            //             'red': this.currentPlayer().cards.filter(card => card.color === 'red').length,
+            //             'yellow': this.currentPlayer().cards.filter(card => card.color === 'yellow').length,
+            //             'green': this.currentPlayer().cards.filter(card => card.color === 'green').length,
+            //             'blue': this.currentPlayer().cards.filter(card => card.color === 'blue').length
+            //         }
 
-                    const colorToChoose = Object.keys(numberOfColors).reduce((a, b) => numberOfColors[a] > numberOfColors[b] ? a : b);
+            //         const colorToChoose = Object.keys(numberOfColors).reduce((a, b) => numberOfColors[a] > numberOfColors[b] ? a : b);
 
-                    setTimeout(() => {
-                        this.chooseColor(colorToChoose);
-                    }, 1000);
-                }
-            }
+            //         this.chooseColor(colorToChoose);
+            //         this.$emit('currentNumberChangeEvent', '');
+
+            //     } else {
+            //         this.modalVisible = true;
+            //     }
+            // }
 
             // If last card didn't trigger a specific rule,
             // then just change the turn
-            else if ( !card.rule ) {
+            // if ( !card.rule ) {
                 // Next player
-                setTimeout(() => {
-                    this.changeTurn(false);
-                }, 500);
-            }
+                this.nextPlayer(false);
+            // }
         },
 
         markAllowedCards(player) {
@@ -128,7 +138,6 @@ export default {
             const cards = player.cards;
 
             cards.forEach(card => {
-
                 // Mark each card as (un)playable
                 if ( card.color === this.currentColor || card.color === 'black' || this.currentColor === 'black' || (card.nr === this.currentNumber && this.currentNumber !== '') ) {
                     card.playable = true;
@@ -139,9 +148,9 @@ export default {
 
             // When there are no playable cards, then take a card from the stack
             // and change turns
-            if ( !cards.find((card) => card.playable ) ) {
-                this.takeCard(1);
-            }
+            // if ( !cards.find((card) => card.playable ) ) {
+            //     this.takeCard(1);
+            // }
         },
 
         nextPlayer(skip) {
@@ -183,19 +192,25 @@ export default {
                     }
                 }
             }
+
+            this.markAllowedCards(this.currentPlayer());
+
+            // Make computer player choose card
+            if ( this.currentPlayer().computerPlayer ) {
+                this.computerPlayerPlayCard();
+            } else {
+                // Check if there are playable cards, if not, take a card from the deck
+                const cardToPlay = this.currentPlayer().cards.find(card => card.playable);
+                if ( !cardToPlay ) {
+                    this.takeCard(1);
+                }
+            }
+
+
         },
 
         currentPlayer() {
             return this.players.find((player) => player.turn );
-        },
-
-        changeTurn(skip) {
-            this.nextPlayer(skip);
-            this.markAllowedCards(this.currentPlayer());
-
-            if ( this.currentPlayer().computerPlayer ) {
-                this.computerPlayerPlayCard();
-            }
         },
 
         computerPlayerPlayCard() {
@@ -214,25 +229,15 @@ export default {
         takeCard(nr) {
             for (let index = 0; index < nr; index++) {
                 const card = this.gameDeck[0];
-                this.gameDeck.splice(0, 1);
                 this.currentPlayer().cards.push(card);
+                this.$emit('removeCardFromGameDeckEvent');
+                this.nextPlayer(false);
             }
-
-            setTimeout(() => {
-                this.changeTurn(false);
-            }, 500);
-
         },
 
         chooseColor(color) {
-            this.$emit('currentColorChangeEvent', color);
+            this.$emit('currentColorChangeEvent', { 'color': color, 'byRule': true});
             this.modalVisible = false;
-
-            // Next player
-            setTimeout(() => {
-                this.changeTurn(false);
-            }, 500);
-
         },
 
         callWinner(player) {
@@ -242,6 +247,14 @@ export default {
     },
     created() {
         this.markAllowedCards(this.currentPlayer());
+
+        document.addEventListener('cardUpdated', () => {
+            const currentCard = this.stack[this.stack.length - 1];
+            setTimeout(() => {
+                const currentCard = this.stack[this.stack.length - 1];
+                this.applyRules(currentCard);
+            }, 200);
+        });
     }
 }
 </script>
