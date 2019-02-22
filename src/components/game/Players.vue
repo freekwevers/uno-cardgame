@@ -51,57 +51,30 @@ export default {
             // }
 
             // Update current card
-            this.$emit('currentCardChangeEvent', {color: card.color, number: card.nr, byRule: false});
-
-            // Apply the rules provided by the card
-            // this.applyRules(card);
+            this.$emit('currentCardChangeEvent', {color: card.color, number: card.nr});
         },
 
         applyRules(card) {
 
             // Skip turn rule
-            // if ( card.rule === 'next-player-skip-turn' ) {
-            //     // setTimeout(() => {
-            //     //     this.changeTurn(true);
-            //     // }, 500);
-
-            //     // TEMP
-            //     this.changeTurn(false);
-            // }
+            if ( card.rule === 'next-player-skip-turn' ) {
+                this.nextPlayer(true);
+            }
 
             // Reverse direction of play rule
-            // else if ( card.rule === 'reverse-direction' ) {
-            //     // this.$emit('changeDirectionEvent');
-            //     // setTimeout(() => {
-            //     //     this.changeTurn(false);
-            //     // }, 500);
+            else if ( card.rule === 'reverse-direction' ) {
+                this.$emit('changeDirectionEvent');
+            }
 
-            //     // TEMP
-            //     this.changeTurn(false);
-            // }
+            // Next player take 2 cards rule
+            else if ( card.rule === 'next-player-take-two' ) {
+                this.nextPlayer(false, true, false);
+            }
 
-            // Next player take 2 / 4 cards rule
-            // else if ( card.rule === 'next-player-take-two' || card.rule === 'next-player-take-four' ) {
-
-            //     // // First go to next player
-            //     // this.nextPlayer(false);
-
-            //     // // Take 2 cards
-            //     // if ( card.rule === 'next-player-take-two' ) {
-            //     //     // The takeCard makes the player take the cards and skip his turn
-            //     //     this.takeCard(2);
-            //     // }
-
-            //     // // Take 4 cards
-            //     // if ( card.rule === 'next-player-take-four' ) {
-            //     //     // The takeCard makes the player take the cards and skip his turn
-            //     //     this.takeCard(4);
-            //     // }
-
-            //     // TEMP UNTIL RULES ARE PROPERLY APPLIED
-            //     // Next player
-            //     this.changeTurn(false);
-            // }
+            // Next player take 4 cards rule
+            else if ( card.rule === 'next-player-take-four' ) {
+                this.nextPlayer(false, false, true);
+            }
 
             // Choose a color rule
             // else if ( card.rule === 'choose-color' ) {
@@ -126,10 +99,9 @@ export default {
 
             // If last card didn't trigger a specific rule,
             // then just change the turn
-            // if ( !card.rule ) {
-                // Next player
+            if ( !card.rule ) {
                 this.nextPlayer(false);
-            // }
+            }
         },
 
         markAllowedCards(player) {
@@ -153,7 +125,7 @@ export default {
             // }
         },
 
-        nextPlayer(skip) {
+        nextPlayer(skip, takeTwo, takeFour) {
 
             // This function selects the next player
             const currentPlayerIndex = this.players.findIndex((player) => player.turn);
@@ -193,20 +165,27 @@ export default {
                 }
             }
 
-            this.markAllowedCards(this.currentPlayer());
 
-            // Make computer player choose card
-            if ( this.currentPlayer().computerPlayer ) {
-                this.computerPlayerPlayCard();
-            } else {
-                // Check if there are playable cards, if not, take a card from the deck
-                const cardToPlay = this.currentPlayer().cards.find(card => card.playable);
-                if ( !cardToPlay ) {
-                    this.takeCard(1);
+            if ( !takeTwo && !takeFour ) {
+                this.markAllowedCards(this.currentPlayer());
+
+                // Make computer player choose card
+                if ( this.currentPlayer().computerPlayer ) {
+                    this.computerPlayerPlayCard();
+                } else {
+                    // Check if there are playable cards, if not, take a card from the deck
+                    const cardToPlay = this.currentPlayer().cards.find(card => card.playable);
+                    if ( !cardToPlay ) {
+                        this.takeCard(1);
+                    }
                 }
+            } else if ( takeTwo ) {
+                console.log('take 2 cards');
+                this.takeCard(2);
+            } else if ( takeFour ) {
+                console.log('take 4 cards');
+                this.takeCard(4);
             }
-
-
         },
 
         currentPlayer() {
@@ -228,11 +207,11 @@ export default {
 
         takeCard(nr) {
             for (let index = 0; index < nr; index++) {
-                const card = this.gameDeck[0];
-                this.currentPlayer().cards.push(card);
-                this.$emit('removeCardFromGameDeckEvent');
-                this.nextPlayer(false);
+                this.currentPlayer().cards.push(this.gameDeck[index]);
             }
+
+            this.$emit('removeCardsFromGameDeckEvent', nr);
+            this.nextPlayer(false);
         },
 
         chooseColor(color) {
@@ -253,6 +232,13 @@ export default {
             setTimeout(() => {
                 const currentCard = this.stack[this.stack.length - 1];
                 this.applyRules(currentCard);
+            }, 200);
+        });
+
+        document.addEventListener('directionChanged', () => {
+            console.log('changed direction global event');
+            setTimeout(() => {
+                this.nextPlayer(false);
             }, 200);
         });
     }

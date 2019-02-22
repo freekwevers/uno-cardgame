@@ -16,7 +16,7 @@
                                         </div>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentCardChangeEvent="changeCurrentColor" :customEvents="customEvents" @removeCardFromGameDeckEvent="removeCardFromGameDeck"></app-players>
+                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentCardChangeEvent="changeCurrentCard" :customEvents="customEvents" @removeCardsFromGameDeckEvent="removeCardsFromGameDeck"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -82,10 +82,9 @@ export default {
             currentColor: null,
             currentNumber: null,
             customEvents: {
-                // colorUpdatedEvent: new CustomEvent('colorUpdated'),
-                // colorUpdatedEventNoRule: new CustomEvent('colorUpdatedNoRule'),
                 playerChangedEvent: new CustomEvent('playerChanged'),
-                cardUpdatedEvent: new CustomEvent('cardUpdated', { some: 'data' })
+                cardUpdatedEvent: new CustomEvent('cardUpdated'),
+                directionChangedEvent: new CustomEvent('directionChanged')
             }
         }
     },
@@ -138,15 +137,16 @@ export default {
         },
         changeDirection() {
             this.directionIsClockwise = !this.directionIsClockwise;
+            document.dispatchEvent(this.customEvents.directionChangedEvent);
         },
-        changeCurrentColor(args) {
+        changeCurrentCard(args) {
             this.currentColor = args.color;
             this.currentNumber = args.number;
 
             document.dispatchEvent(this.customEvents.cardUpdatedEvent);
         },
-        removeCardFromGameDeck() {
-            this.gameDeck.splice(0, 1);
+        removeCardsFromGameDeck(nr) {
+            this.gameDeck.splice(0, nr);
         }
     },
     created() {
