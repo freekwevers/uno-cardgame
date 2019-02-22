@@ -16,7 +16,7 @@
                                         </div>
                                     </div><!-- /.playing-area -->
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentCardChangeEvent="changeCurrentCard" :customEvents="customEvents" @removeCardsFromGameDeckEvent="removeCardsFromGameDeck"></app-players>
+                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentCardChangeEvent="changeCurrentCard" :customEvents="customEvents" @removeCardsFromGameDeckEvent="removeCardsFromGameDeck" @chooseColorEvent="chooseColor"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -84,7 +84,8 @@ export default {
             customEvents: {
                 playerChangedEvent: new CustomEvent('playerChanged'),
                 cardUpdatedEvent: new CustomEvent('cardUpdated'),
-                directionChangedEvent: new CustomEvent('directionChanged')
+                directionChangedEvent: new CustomEvent('directionChanged'),
+                colorChosenEvent: new CustomEvent('colorChosen')
             }
         }
     },
@@ -144,6 +145,11 @@ export default {
             this.currentNumber = args.number;
 
             document.dispatchEvent(this.customEvents.cardUpdatedEvent);
+        },
+        chooseColor(args) {
+            this.currentColor = args.color;
+            this.currentNumber = args.number;
+            document.dispatchEvent(this.customEvents.colorChosenEvent);
         },
         removeCardsFromGameDeck(nr) {
             this.gameDeck.splice(0, nr);

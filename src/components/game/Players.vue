@@ -40,15 +40,17 @@ export default {
 
             // Get index from the card in players hand
             const cardIndex = player.cards.findIndex((playerCard) => card === playerCard);
+
             // Use this index to remove this item from the players hand
             player.cards.splice(cardIndex, 1);
+
             // Put the clicked card on top op the stack
             this.$emit('addToStackEvent', card);
 
-            // if ( player.cards.length === 0 ) {
-            //     this.callWinner(player);
-            //     return;
-            // }
+            // Call winner if current players hand is empty
+            if ( player.cards.length === 0 ) {
+                this.callWinner(player);
+            }
 
             // Update current card
             this.$emit('currentCardChangeEvent', {color: card.color, number: card.nr});
@@ -58,6 +60,7 @@ export default {
 
             // Skip turn rule
             if ( card.rule === 'next-player-skip-turn' ) {
+                // Call nextPlayer with the skip flag set to true
                 this.nextPlayer(true);
             }
 
@@ -68,34 +71,41 @@ export default {
 
             // Next player take 2 cards rule
             else if ( card.rule === 'next-player-take-two' ) {
+                // Call nextPlayer with the skip flag set to false, the takeTwo flag set to true
+                // and the takeFour flag set to false
                 this.nextPlayer(false, true, false);
             }
 
             // Next player take 4 cards rule
             else if ( card.rule === 'next-player-take-four' ) {
+                // Call nextPlayer with the skip flag set to false, the takeTwo flag set to false
+                // and the takeFour flag set to true
                 this.nextPlayer(false, false, true);
             }
 
             // Choose a color rule
-            // else if ( card.rule === 'choose-color' ) {
+            else if ( card.rule === 'choose-color' ) {
 
-            //     if ( this.currentPlayer().computerPlayer ) {
-            //         let numberOfColors = {
-            //             'red': this.currentPlayer().cards.filter(card => card.color === 'red').length,
-            //             'yellow': this.currentPlayer().cards.filter(card => card.color === 'yellow').length,
-            //             'green': this.currentPlayer().cards.filter(card => card.color === 'green').length,
-            //             'blue': this.currentPlayer().cards.filter(card => card.color === 'blue').length
-            //         }
+                // If current player is a computer player, then check
+                // what kind of color the player has the most cards of
+                // then play the first card of that color
+                if ( this.currentPlayer().computerPlayer ) {
+                    let numberOfColors = {
+                        'red': this.currentPlayer().cards.filter(card => card.color === 'red').length,
+                        'yellow': this.currentPlayer().cards.filter(card => card.color === 'yellow').length,
+                        'green': this.currentPlayer().cards.filter(card => card.color === 'green').length,
+                        'blue': this.currentPlayer().cards.filter(card => card.color === 'blue').length
+                    }
 
-            //         const colorToChoose = Object.keys(numberOfColors).reduce((a, b) => numberOfColors[a] > numberOfColors[b] ? a : b);
+                    const colorToChoose = Object.keys(numberOfColors).reduce((a, b) => numberOfColors[a] > numberOfColors[b] ? a : b);
 
-            //         this.chooseColor(colorToChoose);
-            //         this.$emit('currentNumberChangeEvent', '');
+                    this.$emit('chooseColorEvent', {color: colorToChoose, number: ''});
 
-            //     } else {
-            //         this.modalVisible = true;
-            //     }
-            // }
+                } else {
+                    // Pick color manually
+                    this.modalVisible = true;
+                }
+            }
 
             // If last card didn't trigger a specific rule,
             // then just change the turn
@@ -117,12 +127,6 @@ export default {
                     card.playable = false;
                 }
             });
-
-            // When there are no playable cards, then take a card from the stack
-            // and change turns
-            // if ( !cards.find((card) => card.playable ) ) {
-            //     this.takeCard(1);
-            // }
         },
 
         nextPlayer(skip, takeTwo, takeFour) {
@@ -165,7 +169,6 @@ export default {
                 }
             }
 
-
             if ( !takeTwo && !takeFour ) {
                 this.markAllowedCards(this.currentPlayer());
 
@@ -180,10 +183,8 @@ export default {
                     }
                 }
             } else if ( takeTwo ) {
-                console.log('take 2 cards');
                 this.takeCard(2);
             } else if ( takeFour ) {
-                console.log('take 4 cards');
                 this.takeCard(4);
             }
         },
@@ -215,8 +216,7 @@ export default {
         },
 
         chooseColor(color) {
-            this.$emit('currentColorChangeEvent', { 'color': color, 'byRule': true});
-            this.modalVisible = false;
+            this.$emit('chooseColorEvent', {color: color, number: ''});
         },
 
         callWinner(player) {
@@ -235,8 +235,16 @@ export default {
             }, 200);
         });
 
+        document.addEventListener('colorChosen', () => {
+            setTimeout(() => {
+                this.nextPlayer(false);
+                if ( this.modalVisible ) {
+                    this.modalVisible = false;
+                }
+            }, 200);
+        });
+
         document.addEventListener('directionChanged', () => {
-            console.log('changed direction global event');
             setTimeout(() => {
                 this.nextPlayer(false);
             }, 200);
