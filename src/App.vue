@@ -15,6 +15,8 @@
                                             <div class="current-color__inner" :class="['current-color--' + currentColor]"></div>
                                         </div>
                                     </div><!-- /.playing-area -->
+                                    <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2>
+                                    <app-uno-button @unoNotCalledEvent="unoNotCalled" @unoCalledEvent="unoCalled"></app-uno-button>
                                     <div class="hands">
                                         <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentCardChangeEvent="changeCurrentCard" :customEvents="customEvents" @removeCardsFromGameDeckEvent="removeCardsFromGameDeck" @chooseColorEvent="chooseColor"></app-players>
                                     </div><!-- /.hands -->
@@ -34,6 +36,7 @@ import appCard from '@/components/game/Card.vue';
 import appDeck from '@/components/game/Deck.vue';
 import appStack from '@/components/game/Stack.vue';
 import appPlayers from '@/components/game/Players.vue';
+import appUnoButton from '@/components/game/UnoButton.vue';
 
 export default {
     name: "app",
@@ -41,7 +44,8 @@ export default {
         appCard,
         appDeck,
         appStack,
-        appPlayers
+        appPlayers,
+        appUnoButton
     },
     data() {
         return {
@@ -78,15 +82,19 @@ export default {
                     computerPlayer: true
                 }
             ],
-            directionIsClockwise: false,
+            directionIsClockwise: true,
             currentColor: null,
             currentNumber: null,
             customEvents: {
-                playerChangedEvent: new CustomEvent('playerChanged'),
                 cardUpdatedEvent: new CustomEvent('cardUpdated'),
                 directionChangedEvent: new CustomEvent('directionChanged'),
                 colorChosenEvent: new CustomEvent('colorChosen')
             }
+        }
+    },
+    computed: {
+        currentPlayer() {
+            return this.players.find(player => player.turn);
         }
     },
     methods: {
@@ -153,6 +161,12 @@ export default {
         },
         removeCardsFromGameDeck(nr) {
             this.gameDeck.splice(0, nr);
+        },
+        unoNotCalled() {
+            console.log('UNO not called, so 2 card penalty and change turn');
+        },
+        unoCalled() {
+            console.log('UNO called, so no worries!');
         }
     },
     created() {
@@ -169,4 +183,5 @@ export default {
 <style lang="scss">
     @import 'styles/style.scss';
     @import 'styles/components/current-color';
+    @import 'styles/components/message';
 </style>

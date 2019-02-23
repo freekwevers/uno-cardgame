@@ -18,4 +18,15 @@
             box-shadow: $shadow2;
         }
     }
+
+    &--uno {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &.danger {
+            background-color: $red;
+            color: $white;
+        }
+    }
 }
