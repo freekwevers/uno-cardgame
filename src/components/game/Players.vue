@@ -47,13 +47,22 @@ export default {
             // Put the clicked card on top op the stack
             this.$emit('addToStackEvent', card);
 
+            // Check if current player has last card
+            if ( player.cards.length === 1 ) {
+                this.$emit('showUnoButtonEvent');
+
+            } else {
+                // Update current card
+                this.$emit('currentCardChangeEvent', {
+                    color: card.color,
+                    number: card.nr
+                });
+            }
+
             // Call winner if current players hand is empty
             if ( player.cards.length === 0 ) {
                 this.callWinner(player);
             }
-
-            // Update current card
-            this.$emit('currentCardChangeEvent', {color: card.color, number: card.nr});
         },
 
         applyRules(card) {
@@ -247,6 +256,23 @@ export default {
         document.addEventListener('directionChanged', () => {
             setTimeout(() => {
                 this.nextPlayer(false);
+            }, 200);
+        });
+
+        document.addEventListener('twoCardPenalty', () => {
+            setTimeout(() => {
+                this.takeCard(2);
+            }, 200);
+        });
+
+        document.addEventListener('unoCalled', () => {
+            setTimeout(() => {
+                // this.nextPlayer(false);
+                const card = this.stack[this.stack.length - 1];
+                this.$emit('currentCardChangeEvent', {
+                    color: card.color,
+                    number: card.nr
+                });
             }, 200);
         });
     }

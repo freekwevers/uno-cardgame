@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class='btn btn--uno' @click="callUno" :class="{ danger: timer < 4 }">UNO!</button>
+        <button class='btn btn--uno' @click="callUno" :class="{ danger: timer < 4 }">Call UNO!</button>
         {{ timer }}
     </div>
 </template>
@@ -13,7 +13,7 @@
                 interval: null
             }
         },
-        props: [],
+        props: ['currentPlayer'],
         methods: {
             callUno() {
                 clearInterval(this.interval);
@@ -34,6 +34,13 @@
         },
         created() {
             this.startCountDown();
+            if ( this.currentPlayer.computerPlayer ) {
+                const chance = Math.random() * 100;
+                if ( chance < 90 ) {
+                    // computer player calls uno
+                    this.callUno();
+                }
+            };
         }
     }
 </script>

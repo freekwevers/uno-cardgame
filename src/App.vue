@@ -16,9 +16,25 @@
                                         </div>
                                     </div><!-- /.playing-area -->
                                     <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2>
-                                    <app-uno-button @unoNotCalledEvent="unoNotCalled" @unoCalledEvent="unoCalled"></app-uno-button>
+                                    <app-uno-button
+                                    :currentPlayer="currentPlayer"
+                                    @unoNotCalledEvent="unoNotCalled"
+                                    @unoCalledEvent="unoCalled"
+                                    v-if="showUnoButton"></app-uno-button>
                                     <div class="hands">
-                                        <app-players :players="players" :stack="stack" :gameDeck="gameDeck" :currentColor="currentColor" :currentNumber="currentNumber" :directionIsClockwise="directionIsClockwise" @addToStackEvent="addCardToStack" @changeDirectionEvent="changeDirection" @currentCardChangeEvent="changeCurrentCard" :customEvents="customEvents" @removeCardsFromGameDeckEvent="removeCardsFromGameDeck" @chooseColorEvent="chooseColor"></app-players>
+                                        <app-players
+                                        :players="players"
+                                        :stack="stack"
+                                        :gameDeck="gameDeck"
+                                        :currentColor="currentColor"
+                                        :currentNumber="currentNumber"
+                                        :directionIsClockwise="directionIsClockwise"
+                                        :customEvents="customEvents"
+                                        @addToStackEvent="addCardToStack"
+                                        @changeDirectionEvent="changeDirection"
+                                        @currentCardChangeEvent="changeCurrentCard"
+                                        @removeCardsFromGameDeckEvent="removeCardsFromGameDeck" @chooseColorEvent="chooseColor"
+                                        @showUnoButtonEvent="showUnoButton = true"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
                             </div><!-- /.section -->
@@ -88,8 +104,11 @@ export default {
             customEvents: {
                 cardUpdatedEvent: new CustomEvent('cardUpdated'),
                 directionChangedEvent: new CustomEvent('directionChanged'),
-                colorChosenEvent: new CustomEvent('colorChosen')
-            }
+                colorChosenEvent: new CustomEvent('colorChosen'),
+                twoCardPenaltyEvent: new CustomEvent('twoCardPenalty'),
+                unoCalledEvent: new CustomEvent('unoCalled')
+            },
+            showUnoButton: false
         }
     },
     computed: {
@@ -163,10 +182,12 @@ export default {
             this.gameDeck.splice(0, nr);
         },
         unoNotCalled() {
-            console.log('UNO not called, so 2 card penalty and change turn');
+            document.dispatchEvent(this.customEvents.twoCardPenaltyEvent);
+            this.showUnoButton = false;
         },
         unoCalled() {
-            console.log('UNO called, so no worries!');
+            document.dispatchEvent(this.customEvents.unoCalledEvent);
+            this.showUnoButton = false;
         }
     },
     created() {
