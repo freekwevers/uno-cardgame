@@ -128,14 +128,21 @@ export default {
             // Select the current players cards
             const cards = player.cards;
 
-            cards.forEach(card => {
-                // Mark each card as (un)playable
-                if ( card.color === this.currentColor || card.color === 'black' || this.currentColor === 'black' || (card.nr === this.currentNumber && this.currentNumber !== '') ) {
-                    card.playable = true;
-                } else {
-                    card.playable = false;
-                }
-            });
+            // Check if last card is no special card, if so mark this card as unplayable
+            if ( cards.length === 1 && cards[0].type === 'special' ) {
+                cards[0].playable = false;
+            } else {
+                cards.forEach(card => {
+                    // Mark each card as (un)playable
+                    if ( card.color === this.currentColor || card.color === 'black' || this.currentColor === 'black' || (card.nr === this.currentNumber && this.currentNumber !== '') ) {
+                        card.playable = true;
+                    } else {
+                        card.playable = false;
+                    }
+                });
+            }
+
+
         },
 
         nextPlayer(skip, takeTwo, takeFour) {

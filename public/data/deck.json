@@ -81,7 +81,7 @@
     },
     {
         "id": "red_10",
-        "nr": "",
+        "nr": "98",
         "color": "red",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -89,7 +89,7 @@
     },
     {
         "id": "red_11",
-        "nr": "",
+        "nr": "99",
         "color": "red",
         "type": "special",
         "rule": "reverse-direction",
@@ -185,7 +185,7 @@
     },
     {
         "id": "red_23",
-        "nr": "",
+        "nr": "98",
         "color": "red",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -193,7 +193,7 @@
     },
     {
         "id": "red_24",
-        "nr": "",
+        "nr": "99",
         "color": "red",
         "type": "special",
         "rule": "reverse-direction",
@@ -281,7 +281,7 @@
     },
     {
         "id": "yellow_10",
-        "nr": "",
+        "nr": "98",
         "color": "yellow",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -289,7 +289,7 @@
     },
     {
         "id": "yellow_11",
-        "nr": "",
+        "nr": "99",
         "color": "yellow",
         "type": "special",
         "rule": "reverse-direction",
@@ -377,7 +377,7 @@
     },
     {
         "id": "yellow_22",
-        "nr": "",
+        "nr": "98",
         "color": "yellow",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -385,7 +385,7 @@
     },
     {
         "id": "yellow_23",
-        "nr": "",
+        "nr": "99",
         "color": "yellow",
         "type": "special",
         "rule": "reverse-direction",
@@ -473,7 +473,7 @@
     },
     {
         "id": "green_10",
-        "nr": "",
+        "nr": "98",
         "color": "green",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -481,7 +481,7 @@
     },
     {
         "id": "green_11",
-        "nr": "",
+        "nr": "99",
         "color": "green",
         "type": "special",
         "rule": "reverse-direction",
@@ -569,7 +569,7 @@
     },
     {
         "id": "green_22",
-        "nr": "",
+        "nr": "98",
         "color": "green",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -577,7 +577,7 @@
     },
     {
         "id": "green_23",
-        "nr": "",
+        "nr": "99",
         "color": "green",
         "type": "special",
         "rule": "reverse-direction",
@@ -665,7 +665,7 @@
     },
     {
         "id": "blue_10",
-        "nr": "",
+        "nr": "98",
         "color": "blue",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -673,7 +673,7 @@
     },
     {
         "id": "blue_11",
-        "nr": "",
+        "nr": "99",
         "color": "blue",
         "type": "special",
         "rule": "reverse-direction",
@@ -761,7 +761,7 @@
     },
     {
         "id": "blue_22",
-        "nr": "",
+        "nr": "98",
         "color": "blue",
         "type": "special",
         "rule": "next-player-skip-turn",
@@ -769,7 +769,7 @@
     },
     {
         "id": "blue_23",
-        "nr": "",
+        "nr": "99",
         "color": "blue",
         "type": "special",
         "rule": "reverse-direction",
