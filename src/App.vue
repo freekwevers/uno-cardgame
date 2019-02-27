@@ -16,7 +16,6 @@
                                         </div>
                                     </div><!-- /.playing-area -->
                                     <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2>
-                                    <button class="btn" @click="repopulateDeck">Populate deck</button>
                                     <app-uno-button
                                     :currentPlayer="currentPlayer"
                                     @unoNotCalledEvent="unoNotCalled"
@@ -34,7 +33,9 @@
                                         @addToStackEvent="addCardToStack"
                                         @changeDirectionEvent="changeDirection"
                                         @currentCardChangeEvent="changeCurrentCard"
-                                        @removeCardsFromGameDeckEvent="removeCardsFromGameDeck" @chooseColorEvent="chooseColor"
+                                        @removeCardsFromGameDeckEvent="removeCardsFromGameDeck"
+                                        @chooseColorEvent="chooseColor"
+                                        @repopulateGameDeckEvent="repopulateDeck"
                                         @showUnoButtonEvent="showUnoButton = true"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
@@ -161,7 +162,7 @@ export default {
 
             return array;
         },
-        repopulateDeck() {
+        repopulateDeck(nr) {
             const cards = [];
             this.stack.forEach((card, index) => {
                 if ( index < this.stack.length - 1 )
@@ -178,6 +179,8 @@ export default {
 
             // Shuffle gamedeck
             this.gameDeck = this.shuffleDeck(this.gameDeck);
+            const event = new CustomEvent('gameDeckRepopulated', {'detail': nr});
+            document.dispatchEvent(event);
         },
         addCardToStack(card) {
             this.stack.push(card);
@@ -198,7 +201,7 @@ export default {
             document.dispatchEvent(this.customEvents.colorChosenEvent);
         },
         removeCardsFromGameDeck(nr) {
-            this.gameDeck.splice(0, nr);
+            this.gameDeck.splice(0, nr)
         },
         unoNotCalled() {
             document.dispatchEvent(this.customEvents.twoCardPenaltyEvent);

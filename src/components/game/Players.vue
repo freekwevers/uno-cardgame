@@ -223,12 +223,15 @@ export default {
         },
 
         takeCard(nr) {
-            for (let index = 0; index < nr; index++) {
-                this.currentPlayer().cards.push(this.gameDeck[index]);
+            if ( this.gameDeck.length > nr ) {
+                for (let index = 0; index < nr; index++) {
+                    this.currentPlayer().cards.push(this.gameDeck[index]);
+                }
+                this.$emit('removeCardsFromGameDeckEvent', nr);
+                this.nextPlayer(false);
+            } else {
+                this.$emit('repopulateGameDeckEvent', nr);
             }
-
-            this.$emit('removeCardsFromGameDeckEvent', nr);
-            this.nextPlayer(false);
         },
 
         chooseColor(color) {
@@ -282,6 +285,17 @@ export default {
                 });
             }, 200);
         });
+
+        document.addEventListener('gameDeckRepopulated', (event) => {
+            setTimeout(() => {
+                const nr = event.detail;
+                for (let index = 0; index < nr; index++) {
+                    this.currentPlayer().cards.push(this.gameDeck[index]);
+                }
+                this.$emit('removeCardsFromGameDeckEvent', nr);
+                this.nextPlayer(false);
+            }, 200);
+        })
     }
 }
 </script>
