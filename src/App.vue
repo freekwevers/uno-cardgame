@@ -162,7 +162,22 @@ export default {
             return array;
         },
         repopulateDeck() {
-            console.log('repopulate deck');
+            const cards = [];
+            this.stack.forEach((card, index) => {
+                if ( index < this.stack.length - 1 )
+                cards.push(card);
+            });
+
+            // remove all but the last card from stack
+            this.stack.splice(0, cards.length);
+
+            // Add removed cards to game deck
+            cards.forEach(card => {
+                this.gameDeck.push(card);
+            });
+
+            // Shuffle gamedeck
+            this.gameDeck = this.shuffleDeck(this.gameDeck);
         },
         addCardToStack(card) {
             this.stack.push(card);
