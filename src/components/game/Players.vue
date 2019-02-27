@@ -29,7 +29,7 @@ export default {
             modalVisible: false
         }
     },
-    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise', 'currentColor', 'currentNumber', 'customEvents'],
+    props: ['players', 'stack', 'gameDeck', 'directionIsClockwise', 'currentColor', 'currentNumber', 'customEvents', 'winner'],
     components: {
         appCard,
         appChooseColor
@@ -141,8 +141,6 @@ export default {
                     }
                 });
             }
-
-
         },
 
         nextPlayer(skip, takeTwo, takeFour) {
@@ -210,16 +208,18 @@ export default {
         },
 
         computerPlayerPlayCard() {
-            const thinkingTime = Math.floor(Math.random() * 500) + 3000;
-            const cardToPlay = this.currentPlayer().cards.find(card => card.playable);
+            if ( !this.winner ) {
+                const thinkingTime = Math.floor(Math.random() * 500) + 3000;
+                const cardToPlay = this.currentPlayer().cards.find(card => card.playable);
 
-            setTimeout(() => {
-                if ( cardToPlay ) {
-                    this.playCard(cardToPlay, this.currentPlayer());
-                } else {
-                    this.takeCard(1);
-                }
-            }, thinkingTime);
+                setTimeout(() => {
+                    if ( cardToPlay ) {
+                        this.playCard(cardToPlay, this.currentPlayer());
+                    } else {
+                        this.takeCard(1);
+                    }
+                }, thinkingTime);
+            }
         },
 
         takeCard(nr) {
@@ -240,7 +240,8 @@ export default {
 
         callWinner(player) {
             // TODO create fancy modal with reset button
-            alert(player.name + 'wins!!!');
+            // alert(player.name + 'wins!!!');
+            this.$emit('callWinnerEvent', player.name);
         }
     },
     created() {

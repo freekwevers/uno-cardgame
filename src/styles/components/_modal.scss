@@ -12,7 +12,8 @@
 
     &__inner {
         padding: 30px;
-        max-width: calc(100% - 30px);
+        width: calc(100% - 30px);
+        max-width: 560px;
         max-height: calc(100vh - 30px);
         background-color: $black;
         border-radius: 3px;

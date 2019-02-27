@@ -1,0 +1,65 @@
+.winner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1,
+    h3 {
+        opacity: 0;
+        animation: fadeInMoveUp20 .8s ease forwards .2s;
+    }
+
+    .btn {
+        opacity: 0;
+        margin: 2em auto;
+        animation: fadeInMoveUp20 .8s ease forwards .4s;
+    }
+
+    &__msg {
+        padding: 1em 0 2em;
+        text-align: center;
+    }
+}
+
+.trophy {
+    width: 400px;
+    height: auto;
+    max-width: 100%;
+    max-height: 400px;
+    margin-top: auto;
+}
+
+#round-bg {
+    opacity: 0;
+    animation: fadeInMoveUp50 1s ease forwards .4s;
+}
+
+#trophy {
+    transform: translate3d(-100%, 0, 0);
+    animation: slideInLeft .4s cubic-bezier(0.175, 0.885, 0.290, 1.195) forwards 1s;
+}
+
+#star {
+    opacity: 0;
+    animation: fadeInScale .3s cubic-bezier(0.175, 0.885, 0.290, 1.195) forwards 2s;
+}
+
+@keyframes fadeInMoveUp50 {
+    0%   { opacity: 0; transform: translate3d(0, 50px, 0) }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) }
+}
+
+@keyframes fadeInMoveUp20 {
+    0%   { opacity: 0; transform: translate3d(0, 20px, 0) }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) }
+}
+
+@keyframes slideInLeft {
+    0%   { opacity: 0; transform: translate3d(-100%, 0, 0) }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) }
+}
+
+@keyframes fadeInScale {
+    0%   { opacity: 0; transform: scale(0) }
+    100% { opacity: 1; transform: scale(1) }
+}

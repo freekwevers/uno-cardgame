@@ -30,12 +30,14 @@
                                         :currentNumber="currentNumber"
                                         :directionIsClockwise="directionIsClockwise"
                                         :customEvents="customEvents"
+                                        :winner="winner"
                                         @addToStackEvent="addCardToStack"
                                         @changeDirectionEvent="changeDirection"
                                         @currentCardChangeEvent="changeCurrentCard"
                                         @removeCardsFromGameDeckEvent="removeCardsFromGameDeck"
                                         @chooseColorEvent="chooseColor"
                                         @repopulateGameDeckEvent="repopulateDeck"
+                                        @callWinnerEvent="callWinner"
                                         @showUnoButtonEvent="showUnoButton = true"></app-players>
                                     </div><!-- /.hands -->
                                 </div>
@@ -45,6 +47,9 @@
                 </div><!-- /.container -->
             </main><!-- /.main -->
         </div><!-- /.body-wrapper -->
+        <transition name="fade">
+            <app-winner :winner="winner" @resetGameEvent="resetGame" v-if="winner"></app-winner>
+        </transition>
     </div><!-- /#app -->
 </template>
 
@@ -55,6 +60,7 @@ import appDeck from '@/components/game/Deck.vue';
 import appStack from '@/components/game/Stack.vue';
 import appPlayers from '@/components/game/Players.vue';
 import appUnoButton from '@/components/game/UnoButton.vue';
+import appWinner from '@/components/game/Winner.vue';
 
 export default {
     name: "app",
@@ -63,7 +69,8 @@ export default {
         appDeck,
         appStack,
         appPlayers,
-        appUnoButton
+        appUnoButton,
+        appWinner
     },
     data() {
         return {
@@ -100,6 +107,7 @@ export default {
                     computerPlayer: true
                 }
             ],
+            winner: null,
             directionIsClockwise: true,
             currentColor: null,
             currentNumber: null,
@@ -210,6 +218,27 @@ export default {
         unoCalled() {
             document.dispatchEvent(this.customEvents.unoCalledEvent);
             this.showUnoButton = false;
+        },
+        callWinner(name) {
+            this.winner = name;
+        },
+        resetGame() {
+            this.gameDeck = null;
+            this.stack = [];
+            this.players.forEach((player, index) => {
+                if ( index === 0 ) {
+                    player.turn = true;
+                } else {
+                    player.turn = false;
+                }
+                player.cards = []
+            });
+            this.winner = null;
+            this.directionIsClockwise = true;
+            this.currentColor = null;
+            this.currentNumber = null;
+            this.showUnoButton = false;
+            this.dealCards();
         }
     },
     created() {
