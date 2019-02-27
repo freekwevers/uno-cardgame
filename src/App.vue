@@ -16,6 +16,7 @@
                                         </div>
                                     </div><!-- /.playing-area -->
                                     <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2>
+                                    <button class="btn" @click="repopulateDeck">Populate deck</button>
                                     <app-uno-button
                                     :currentPlayer="currentPlayer"
                                     @unoNotCalledEvent="unoNotCalled"
@@ -159,6 +160,9 @@ export default {
             }
 
             return array;
+        },
+        repopulateDeck() {
+            console.log('repopulate deck');
         },
         addCardToStack(card) {
             this.stack.push(card);
