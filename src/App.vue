@@ -116,7 +116,8 @@ export default {
                 directionChangedEvent: new CustomEvent('directionChanged'),
                 colorChosenEvent: new CustomEvent('colorChosen'),
                 twoCardPenaltyEvent: new CustomEvent('twoCardPenalty'),
-                unoCalledEvent: new CustomEvent('unoCalled')
+                unoCalledEvent: new CustomEvent('unoCalled'),
+                gameResetEvent: new CustomEvent('gameReset')
             },
             showUnoButton: false
         }
@@ -149,6 +150,7 @@ export default {
             // Set current number and color
             this.currentColor = this.stack[0].color;
             this.currentNumber = this.stack[0].nr;
+
         },
         shuffleDeck(array) {
             let currentIndex = array.length,
@@ -225,6 +227,7 @@ export default {
         resetGame() {
             this.gameDeck = null;
             this.stack = [];
+
             this.players.forEach((player, index) => {
                 if ( index === 0 ) {
                     player.turn = true;
@@ -233,12 +236,12 @@ export default {
                 }
                 player.cards = []
             });
+
             this.winner = null;
             this.directionIsClockwise = true;
             this.currentColor = null;
             this.currentNumber = null;
             this.showUnoButton = false;
-            this.dealCards();
         }
     },
     created() {

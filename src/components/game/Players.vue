@@ -247,6 +247,10 @@ export default {
     created() {
         this.markAllowedCards(this.currentPlayer());
 
+        if ( !this.currentPlayer().cards.find(card => card.playable ) ) {
+            this.takeCard(1);
+        }
+
         document.addEventListener('cardUpdated', () => {
             const currentCard = this.stack[this.stack.length - 1];
             setTimeout(() => {
@@ -296,7 +300,16 @@ export default {
                 this.$emit('removeCardsFromGameDeckEvent', nr);
                 this.nextPlayer(false);
             }, 200);
-        })
+        });
+
+        // document.addEventListener('gameReset', (event) => {
+        //     setTimeout(() => {
+        //         this.markAllowedCards(this.currentPlayer());
+        //         if ( !this.currentPlayer().cards.find(card => card.playable ) ) {
+        //             this.takeCard(1);
+        //         }
+        //     }, 1000);
+        // });
     }
 }
 </script>
