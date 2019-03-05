@@ -3,8 +3,7 @@
         <ul class="players">
             <li class="player" v-for="(player, index) in players" :key="player.id" :class="{'turn': player.turn}">
                 <h3 v-if="index === 0">My cards</h3>
-                <h3 v-else>Cards {{ player.name}}</h3>
-                <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0 }">
+                <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0 }" v-if="index === 0">
                     <app-card
                     :card="card"
                     v-for="card in players[index].cards"
@@ -301,15 +300,6 @@ export default {
                 this.nextPlayer(false);
             }, 200);
         });
-
-        // document.addEventListener('gameReset', (event) => {
-        //     setTimeout(() => {
-        //         this.markAllowedCards(this.currentPlayer());
-        //         if ( !this.currentPlayer().cards.find(card => card.playable ) ) {
-        //             this.takeCard(1);
-        //         }
-        //     }, 1000);
-        // });
     }
 }
 </script>

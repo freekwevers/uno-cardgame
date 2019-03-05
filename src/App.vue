@@ -15,7 +15,13 @@
                                             <div class="current-color__inner" :class="['current-color--' + currentColor]"></div>
                                         </div>
                                     </div><!-- /.playing-area -->
-                                    <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2>
+                                    <!-- <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2> -->
+                                    <ul class="player__avatars">
+                                        <li class="player__avatar" :class="{ 'is-active': player.turn }" v-for="(player, index) in players">
+                                            <p>{{ index + 1 }}</p>
+                                            <span>Cards: {{ player.cards.length }}</span>
+                                        </li>
+                                    </ul><!-- /.players -->
                                     <app-uno-button
                                     :currentPlayer="currentPlayer"
                                     @unoNotCalledEvent="unoNotCalled"

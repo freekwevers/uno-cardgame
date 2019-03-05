@@ -58,15 +58,23 @@
 }
 
 .opponent-cards {
-    // .card {
-    //     background-color: $black;
-    //     pointer-events: none;
+    .card {
+        background-color: $black;
+        pointer-events: none;
 
-    //     &__nr,
-    //     &__icon {
-    //         display: none;
-    //     }
-    // }
+        &__nr,
+        &__icon {
+            display: none;
+        }
+
+        .turn & {
+            &.is-playable {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+
+
 }
 
 .card {
