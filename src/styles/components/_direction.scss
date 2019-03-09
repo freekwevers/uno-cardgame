@@ -1,0 +1,15 @@
+.direction-icon {
+    fill: $white;
+    width: 20px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    transition: .4s ease-out;
+    transform-origin: center;
+    transform: rotate(0turn);
+    position: relative;
+
+    &--reversed {
+        transform: rotate(0.5turn);
+    }
+}

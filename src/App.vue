@@ -18,10 +18,13 @@
                                     <!-- <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2> -->
                                     <ul class="player__avatars">
                                         <li class="player__avatar" :class="{ 'is-active': player.turn }" v-for="(player, index) in players">
-                                            <p>{{ index + 1 }}</p>
-                                            <span>Cards: {{ player.cards.length }}</span>
+                                            <span>{{ player.cards.length }}</span>
+                                            <img :src="player.avatar" alt="Human player avatar">
                                         </li>
                                     </ul><!-- /.players -->
+                                    <svg :class="{'direction-icon--reversed': !directionIsClockwise}" class="direction-icon" id="f917cd4d-e469-4a4f-acd7-2ee47a1d01a3" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" width="268.83" height="185" viewBox="0 0 268.83 185">
+                                        <path d="M265.17,83.66l-80-80a12.5,12.5,0,1,0-17.68,17.68L226.15,80H12.5a12.5,12.5,0,0,0,0,25H226.15L167.5,163.66a12.5,12.5,0,1,0,17.67,17.68l80-80A12.51,12.51,0,0,0,265.17,83.66Z"/>
+                                    </svg>
                                     <app-uno-button
                                     :currentPlayer="currentPlayer"
                                     @unoNotCalledEvent="unoNotCalled"
@@ -89,28 +92,32 @@ export default {
                     name: 'Player 1',
                     cards: [],
                     turn: true,
-                    computerPlayer: false
+                    computerPlayer: false,
+                    avatar: '/avatars/human-player-boy.svg'
                 },
                 {
                     id: 'player-2',
                     name: 'Player 2',
                     cards: [],
                     turn: false,
-                    computerPlayer: true
+                    computerPlayer: true,
+                    avatar: '/avatars/computer-player-1.svg'
                 },
                 {
                     id: 'player-3',
                     name: 'Player 3',
                     cards: [],
                     turn: false,
-                    computerPlayer: true
+                    computerPlayer: true,
+                    avatar: '/avatars/computer-player-2.svg'
                 },
                 {
                     id: 'player-4',
                     name: 'Player 4',
                     cards: [],
                     turn: false,
-                    computerPlayer: true
+                    computerPlayer: true,
+                    avatar: '/avatars/computer-player-3.svg'
                 }
             ],
             winner: null,
@@ -265,4 +272,5 @@ export default {
     @import 'styles/style.scss';
     @import 'styles/components/current-color';
     @import 'styles/components/message';
+    @import 'styles/components/direction';
 </style>

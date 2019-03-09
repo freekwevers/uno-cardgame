@@ -153,9 +153,9 @@ export default {
                     if ( currentPlayerIndex < this.players.length - 2 ) {
                         this.players[currentPlayerIndex + 2].turn = true;
                     } else if ( currentPlayerIndex < this.players.length - 1 ) {
-                        this.players[1].turn = true;
-                    } else {
                         this.players[0].turn = true;
+                    } else {
+                        this.players[1].turn = true;
                     }
                 } else {
                     if ( currentPlayerIndex < this.players.length - 1 ) {
