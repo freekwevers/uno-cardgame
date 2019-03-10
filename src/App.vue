@@ -146,7 +146,7 @@ export default {
             this.gameDeck = this.shuffleDeck(this.gameDeck);
 
             this.players.forEach(player => {
-                for (let index = 0; index < 2; index++) {
+                for (let index = 0; index < 7; index++) {
                     const card = this.gameDeck[index];
                     player.cards.push(card);
                     this.gameDeck.splice(index, 1);
