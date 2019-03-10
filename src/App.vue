@@ -15,7 +15,6 @@
                                             <div class="current-color__inner" :class="['current-color--' + currentColor]"></div>
                                         </div>
                                     </div><!-- /.playing-area -->
-                                    <!-- <h2 class="message">{{ currentPlayer.name }}, it's your turn</h2> -->
                                     <ul class="player__avatars">
                                         <li class="player__avatar" :class="{ 'is-active': player.turn }" v-for="(player, index) in players">
                                             <span>{{ player.cards.length }}</span>
@@ -147,7 +146,7 @@ export default {
             this.gameDeck = this.shuffleDeck(this.gameDeck);
 
             this.players.forEach(player => {
-                for (let index = 0; index < 7; index++) {
+                for (let index = 0; index < 2; index++) {
                     const card = this.gameDeck[index];
                     player.cards.push(card);
                     this.gameDeck.splice(index, 1);

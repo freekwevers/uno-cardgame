@@ -15,11 +15,16 @@
 .deck,
 .stack {
     position: relative;
-    height: 240px;
-    min-width: 140px;
+    height: 120px;
+    min-width: 70px;
     display: flex;
     padding: 0;
     list-style: none;
+
+    @media screen and (min-width: $tablet) {
+        height: 240px;
+        min-width: 140px;
+    }
 
     .card {
         position: absolute;
@@ -73,8 +78,6 @@
             }
         }
     }
-
-
 }
 
 .card {
@@ -82,9 +85,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    height: 240px;
-    min-width: 140px;
+    padding: 5px;
+    height: 120px;
+    min-width: 70px;
     border: 5px solid $white;
     border-radius: 5px;
     color: $white;
@@ -100,40 +103,73 @@
     }
 
     &__nr {
-        font-size: 72px;
+        font-size: 36px;
         font-weight: bold;
         font-style: italic;
         text-shadow: 2px 2px 1px rgba($black, .5);
 
         &--top {
-            font-size: 20px;
+            font-size: 16px;
             align-self: flex-start;
             margin-bottom: auto;
         }
 
         &--bottom {
-            font-size: 20px;
+            font-size: 16px;
             align-self: flex-end;
             margin-top: auto;
         }
     }
 
     &__icon {
-        width: 80px;
-        height: 80px;
+        width: 40px;
+        height: 40px;
 
         &--top {
             align-self: flex-start;
             margin-bottom: auto;
-            width: 30px;
-            height: 30px;
+            width: 15px;
+            height: 15px;
         }
 
         &--bottom {
             align-self: flex-end;
             margin-top: auto;
-            width: 30px;
-            height: 30px;
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    @media screen and (min-width: $tablet) {
+        height: 240px;
+        min-width: 140px;
+        padding: 10px;
+
+        &__nr {
+            font-size: 72px;
+
+            &--top {
+                font-size: 20px;
+            }
+
+            &--bottom {
+                font-size: 20px;
+            }
+        }
+
+        &__icon {
+            width: 80px;
+            height: 80px;
+
+            &--top {
+                width: 30px;
+                height: 30px;
+            }
+
+            &--bottom {
+                width: 30px;
+                height: 30px;
+            }
         }
     }
 

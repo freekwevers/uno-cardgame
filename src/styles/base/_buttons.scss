@@ -2,12 +2,17 @@
     display: inline-block;
     border-radius: 3px;
     border: none;
-    padding: 10px 40px;
-    font-size: 20px;
+    padding: 5px 20px;
+    font-size: 16px;
     font-weight: 500;
     transition: .1s ease;
     box-shadow: none;
     cursor: pointer;
+
+    @media screen and (min-width: $tablet) {
+        padding: 10px 40px;
+        font-size: 20px;
+    }
 
     &--1 {
         background-color: $white;
@@ -22,9 +27,8 @@
     &--uno {
         position: relative;
         left: 50%;
+        margin-top: 15px;
         transform: translateX(-50%);
-        padding: 15px 50px;
-        font-size: 26px;
         transition: .4s ease;
 
         &.danger {

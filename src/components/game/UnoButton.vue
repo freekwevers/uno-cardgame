@@ -1,15 +1,14 @@
 <template>
     <div>
         <button class='btn btn--uno' @click="callUno" :class="{ danger: timer < 4 }">Call UNO!</button>
-        {{ timer }}
     </div>
 </template>
 <script>
     export default {
         data() {
             return {
-                timerStartVlaue: 8,
-                timer: 8,
+                timerStartVlaue: 6,
+                timer: 6,
                 interval: null
             }
         },
