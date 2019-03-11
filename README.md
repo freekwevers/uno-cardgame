@@ -1,5 +1,5 @@
 # A Vue.js based UNO cardgame
-Just a fun project to practice my Vue.js skills.
+Just a fun project to practice my Vue.js skills. See the app in action [here](https://modest-joliot-9f3652.netlify.com/).
 
 ## Project setup
 ```
