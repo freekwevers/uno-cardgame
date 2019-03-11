@@ -237,23 +237,56 @@ export default {
             this.winner = name;
         },
         resetGame() {
+            this.deck = null;
             this.gameDeck = null;
             this.stack = [];
-
-            this.players.forEach((player, index) => {
-                if ( index === 0 ) {
-                    player.turn = true;
-                } else {
-                    player.turn = false;
+            this.players = [
+                {
+                    id: 'player-1',
+                    name: 'Player 1',
+                    cards: [],
+                    turn: true,
+                    computerPlayer: false,
+                    avatar: '/avatars/human-player-boy.svg'
+                },
+                {
+                    id: 'player-2',
+                    name: 'Player 2',
+                    cards: [],
+                    turn: false,
+                    computerPlayer: true,
+                    avatar: '/avatars/computer-player-1.svg'
+                },
+                {
+                    id: 'player-3',
+                    name: 'Player 3',
+                    cards: [],
+                    turn: false,
+                    computerPlayer: true,
+                    avatar: '/avatars/computer-player-2.svg'
+                },
+                {
+                    id: 'player-4',
+                    name: 'Player 4',
+                    cards: [],
+                    turn: false,
+                    computerPlayer: true,
+                    avatar: '/avatars/computer-player-3.svg'
                 }
-                player.cards = []
-            });
+            ];
 
             this.winner = null;
             this.directionIsClockwise = true;
             this.currentColor = null;
             this.currentNumber = null;
             this.showUnoButton = false;
+
+            api.getCards('/data/deck.json').getAll()
+            .then(response => {
+                this.deck = response.data;
+                this.dealCards();
+            })
+            .catch((err) => console.log(err));
         }
     },
     created() {

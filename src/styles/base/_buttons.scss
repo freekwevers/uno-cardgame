@@ -30,6 +30,7 @@
         margin-top: 15px;
         transform: translateX(-50%);
         transition: .4s ease;
+        background-color: $white;
 
         &.danger {
             background-color: $red;

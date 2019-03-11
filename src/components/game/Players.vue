@@ -2,7 +2,6 @@
     <div class="players-container">
         <ul class="players">
             <li class="player" v-for="(player, index) in players" :key="player.id" :class="{'turn': player.turn}">
-                <h3 v-if="index === 0">My cards</h3>
                 <ul :class="{ 'my-cards': index === 0, 'opponent-cards': index > 0 }" v-if="index === 0">
                     <app-card
                     :card="card"

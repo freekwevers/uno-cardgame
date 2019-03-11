@@ -19,6 +19,7 @@
     min-width: 70px;
     display: flex;
     padding: 0;
+    margin: 0;
     list-style: none;
 
     @media screen and (min-width: $tablet) {
@@ -88,7 +89,7 @@
     padding: 5px;
     height: 120px;
     min-width: 70px;
-    border: 5px solid $white;
+    border: 3px solid $white;
     border-radius: 5px;
     color: $white;
     cursor: pointer;
@@ -141,9 +142,10 @@
     }
 
     @media screen and (min-width: $tablet) {
-        height: 240px;
+        height: 220px;
         min-width: 140px;
         padding: 10px;
+        border: 5px solid $white;
 
         &__nr {
             font-size: 72px;
