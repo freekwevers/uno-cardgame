@@ -1,4 +1,5 @@
-# temp
+# A Vue.js based UNO cardgame
+Just a fun project to practice my Vue.js skills.
 
 ## Project setup
 ```
