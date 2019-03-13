@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class='btn btn--uno' @click="callUno" :class="{ danger: timer < 4 }">Call UNO!</button>
+        <button class='btn btn--uno' @click="callUno" :class="{ danger: timer < 4, computer: this.currentPlayer.computerPlayer }">Call UNO!</button>
     </div>
 </template>
 <script>
@@ -35,7 +35,7 @@
             this.startCountDown();
             if ( this.currentPlayer.computerPlayer ) {
                 const chance = Math.random() * 100;
-                if ( chance < 90 ) {
+                if ( chance < 95 ) {
                     // computer player calls uno
                     this.callUno();
                 }

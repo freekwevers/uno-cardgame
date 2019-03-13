@@ -36,5 +36,9 @@
             background-color: $red;
             color: $white;
         }
+
+        &.computer {
+            display: none;
+        }
     }
 }
